@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @class GGButton;
+@class GGSequence;
 
 @protocol GGGridDelegate <NSObject>
 
@@ -21,6 +22,7 @@
 @property (nonatomic, weak) id<GGGridDelegate> delegate;
 
 - (GGButton *)randomButton;
+- (GGSequence *)randomSequenceWithLength:(NSUInteger)length;
 - (GGButton *)buttonAtLocation:(CGPoint)point;
 
 @end

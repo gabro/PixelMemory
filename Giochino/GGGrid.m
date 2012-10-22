@@ -10,6 +10,7 @@
 
 #import "GGGrid.h"
 #import "GGButton.h"
+#import "GGSequence.h"
 
 #define rgb(r,g,b) [UIColor colorWithRed:r/255.0f green:g/255.0f blue:b/255.0f alpha:1.0f]
 
@@ -66,6 +67,14 @@
 
 - (GGButton *)randomButton {
     return self.buttons[(int)arc4random_uniform(self.buttons.count)];
+}
+
+- (GGSequence *)randomSequenceWithLength:(NSUInteger)length {
+    GGSequence * sequence = [GGSequence sequence];
+    for (NSUInteger i = 0; i < length; i++) {
+        [sequence addButton:[self randomButton]];
+    }
+    return sequence;
 }
 
 - (GGButton *)buttonAtLocation:(CGPoint)point {

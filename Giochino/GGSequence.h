@@ -18,6 +18,7 @@
 
 - (void)play;
 - (void)playCompletion:(void(^)())completion;
+- (void)playCompletion:(void(^)())completion interval:(NSTimeInterval)interval;
 
 - (NSInteger)length;
 

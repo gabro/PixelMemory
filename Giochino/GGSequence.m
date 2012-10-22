@@ -37,14 +37,19 @@
 }
 
 - (void)play {
-    [self playCompletion:nil];
+    [self playCompletion:nil interval:PLAY_INTERVAL];
 }
 
-- (void)playCompletion:(void(^)())completion {
+- (void)playCompletion:(void (^)())completion {
+    [self playCompletion:completion interval:PLAY_INTERVAL];
+}
+
+- (void)playCompletion:(void(^)())completion
+              interval:(NSTimeInterval)interval {
     if (!self.isPlaying) {
         self.isPlaying = YES;
         self.playEnumerator = [self.buttons objectEnumerator];
-        self.playTimer = [NSTimer scheduledTimerWithTimeInterval:PLAY_INTERVAL
+        self.playTimer = [NSTimer scheduledTimerWithTimeInterval:interval
                                                   target:self
                                                 selector:@selector(playStep)
                                                 userInfo:nil
