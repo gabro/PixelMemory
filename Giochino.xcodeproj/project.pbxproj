@@ -69,8 +69,9 @@
 		6A59E4CE1634FCEB00CC9ED8 /* menu_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menu_bg@2x.png"; sourceTree = "<group>"; };
 		6A59E4D91634FD8400CC9ED8 /* GGMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GGMenuViewController.h; path = ../GGMenuViewController.h; sourceTree = "<group>"; };
 		6A59E4DA1634FD8400CC9ED8 /* GGMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GGMenuViewController.m; path = ../GGMenuViewController.m; sourceTree = "<group>"; };
-		6A59E4E0163522FE00CC9ED8 /* GGGrid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGGrid.h; sourceTree = "<group>"; };
-		6A59E4E1163522FE00CC9ED8 /* GGGrid.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGGrid.m; sourceTree = "<group>"; };
+		6A59E4E0163522FE00CC9ED8 /* GGGrid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GGGrid.h; path = ../GGGrid.h; sourceTree = "<group>"; };
+		6A59E4E1163522FE00CC9ED8 /* GGGrid.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GGGrid.m; path = ../GGGrid.m; sourceTree = "<group>"; };
+		6A59E4E316352B6800CC9ED8 /* GameConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameConstants.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,8 +92,6 @@
 		6A59E4821634CBDE00CC9ED8 = {
 			isa = PBXGroup;
 			children = (
-				6A59E4E0163522FE00CC9ED8 /* GGGrid.h */,
-				6A59E4E1163522FE00CC9ED8 /* GGGrid.m */,
 				6A59E4C31634FCD400CC9ED8 /* Images */,
 				6A59E4971634CBDE00CC9ED8 /* Giochino */,
 				6A59E4901634CBDE00CC9ED8 /* Frameworks */,
@@ -134,6 +133,9 @@
 				6A59E4BA1634E75800CC9ED8 /* GGSequence.m */,
 				6A59E4BC1634E86700CC9ED8 /* GGButton.h */,
 				6A59E4BD1634E86700CC9ED8 /* GGButton.m */,
+				6A59E4E0163522FE00CC9ED8 /* GGGrid.h */,
+				6A59E4E1163522FE00CC9ED8 /* GGGrid.m */,
+				6A59E4E316352B6800CC9ED8 /* GameConstants.h */,
 			);
 			path = Giochino;
 			sourceTree = "<group>";

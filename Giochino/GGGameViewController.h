@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GGGrid.h"
 
-@interface GGGameViewController : UIViewController
+@interface GGGameViewController : UIViewController <GGGridDelegate>
 
 @end

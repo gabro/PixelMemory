@@ -9,8 +9,6 @@
 #import "GGSequence.h"
 #import "GGButton.h"
 
-#define PLAY_INTERVAL 0.5f
-
 @interface GGSequence ()
 @property (nonatomic, strong) NSArray * buttons;
 @property (nonatomic, strong) NSTimer * playTimer;
