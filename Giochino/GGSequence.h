@@ -17,5 +17,10 @@
 - (void)addButton:(GGButton *)button;
 
 - (void)play;
+- (void)playCompletion:(void(^)())completion;
+
+- (NSInteger)length;
+
+- (GGButton *)elementAtIndex:(NSUInteger)index;
 
 @end

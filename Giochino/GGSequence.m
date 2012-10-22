@@ -16,6 +16,7 @@
 @property (nonatomic, strong) NSTimer * playTimer;
 @property (nonatomic, strong) NSEnumerator * playEnumerator;
 @property (nonatomic, assign) BOOL isPlaying;
+@property (nonatomic, copy) void (^completion)();
 @end
 
 @implementation GGSequence
@@ -38,6 +39,10 @@
 }
 
 - (void)play {
+    [self playCompletion:nil];
+}
+
+- (void)playCompletion:(void(^)())completion {
     if (!self.isPlaying) {
         self.isPlaying = YES;
         self.playEnumerator = [self.buttons objectEnumerator];
@@ -45,8 +50,9 @@
                                                   target:self
                                                 selector:@selector(playStep)
                                                 userInfo:nil
-                                                 repeats:YES];\
+                                                 repeats:YES];
     }
+    self.completion = completion;
 }
 
 - (void)playStep {
@@ -56,8 +62,16 @@
     } else {
         [self.playTimer invalidate];
         self.isPlaying = NO;
+        if(self.completion) self.completion();
     }
 }
 
+- (NSInteger)length {
+    return self.buttons.count;
+}
+
+- (GGButton *)elementAtIndex:(NSUInteger)index {
+    return [self.buttons objectAtIndex:index];
+}
 
 @end

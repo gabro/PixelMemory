@@ -23,7 +23,8 @@
 @interface GGGameViewController ()
 @property (nonatomic, copy) NSArray * colors;
 @property (nonatomic, copy) NSArray * buttons;
-@property (nonatomic, strong) GGSequence * sequence;
+@property (nonatomic, strong) GGSequence * computerSequence;
+@property (nonatomic, strong) GGSequence * userSequence;
 @end
 
 @implementation GGGameViewController
@@ -32,13 +33,11 @@
 {
     [super viewDidLoad];
     // Become first responder in order to listen to shake events
-    [self becomeFirstResponder];
-
-    self.sequence = [GGSequence sequence];
 
     [self initColors];
 	[self drawGrid];
     [self initDragRecognizer];
+    [self startGame];
 }
 
 - (void)initDragRecognizer {
@@ -49,8 +48,6 @@
 }
 
 - (void)drawGrid {
-    self.view.backgroundColor = [UIColor blackColor];
-
     NSMutableArray * buttons = [NSMutableArray arrayWithCapacity:BUTTONS_PER_COLUMN*BUTTONS_PER_ROW];
     for (NSUInteger i = 0 ; i < BUTTONS_PER_COLUMN; i++) {
         for (NSUInteger j = 0; j < BUTTONS_PER_ROW; j++) {
@@ -60,7 +57,7 @@
             GGButton * button = [[GGButton alloc] initWithFrame:buttonFrame];
             button.backgroundColor = [self randomColor];
             button.alpha = BASE_ALPHA;
-            [button addTarget:self action:@selector(recordButton:) forControlEvents:UIControlEventTouchDown];
+            [button addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchDown];
             [self.view addSubview:button];
             [buttons addObject:button];
         }
@@ -68,9 +65,14 @@
     self.buttons = buttons;
 }
 
-- (void)recordButton:(GGButton *)button {
+- (void)buttonPressed:(GGButton *)button {
     [button lightUp];
-    [self.sequence addButton:button];
+    [self recordButton:button];
+    [self checkSequence];
+}
+
+- (void)recordButton:(GGButton *)button {
+    [self.userSequence addButton:button];
 }
 
 - (void)initColors {
@@ -101,17 +103,48 @@
     }
 }
 
-- (void)motionEnded:(UIEventSubtype)motion
-          withEvent:(UIEvent *)event {
-    // This is a motion/shake event
-    if (event.type == UIEventTypeMotion &&
-        event.subtype == UIEventSubtypeMotionShake) {
-        [self.sequence play];
+- (GGButton *)randomButton {
+    return self.buttons[(int)arc4random_uniform(self.buttons.count)];
+}
+
+- (void)startGame {
+    self.computerSequence = [GGSequence sequence];
+    [self nextLevel];
+}
+
+- (void)nextLevel {
+    [self.computerSequence addButton:[self randomButton]];
+    [self userInteractionEnabled:NO];
+    [self.computerSequence playCompletion:^{
+        self.userSequence = [GGSequence sequence];
+        [self userInteractionEnabled:YES];
+    }];
+}
+
+- (void)userInteractionEnabled:(BOOL)enabled {
+    self.view.userInteractionEnabled = enabled;
+}
+
+- (void)checkSequence {
+    for (int i = 0; i < self.userSequence.length; i++) {
+        if (![[self.userSequence elementAtIndex:i] isEqual:[self.computerSequence elementAtIndex:i]]) {
+            [self gameOver];
+        }
+    }
+    if (self.userSequence.length == self.computerSequence.length) {
+        [self nextLevel];
     }
 }
 
-- (BOOL)canBecomeFirstResponder {
-    return YES;
+- (void)gameOver {
+    NSString * message = [NSString stringWithFormat:@"Game Over! You're result was %i. Try again!", self.computerSequence.length - 1];
+    UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"GAME OVER"
+                                                     message:message
+                                                    delegate:nil
+                                           cancelButtonTitle:@"OK"
+                                           otherButtonTitles:nil, nil];
+    [alert show];
+    [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end
