@@ -11,4 +11,6 @@
 
 @interface GGGameViewController : UIViewController <GGGridDelegate>
 
+- (void)startNewGame;
+
 @end

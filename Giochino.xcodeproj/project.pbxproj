@@ -33,6 +33,13 @@
 		6A59E4D81634FCEB00CC9ED8 /* menu_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A59E4CE1634FCEB00CC9ED8 /* menu_bg@2x.png */; };
 		6A59E4DB1634FD8400CC9ED8 /* GGMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A59E4DA1634FD8400CC9ED8 /* GGMenuViewController.m */; };
 		6A59E4E2163522FE00CC9ED8 /* GGGrid.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A59E4E1163522FE00CC9ED8 /* GGGrid.m */; };
+		6A59E4F71635D81900CC9ED8 /* button_back.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A59E4F11635D81900CC9ED8 /* button_back.png */; };
+		6A59E4F81635D81900CC9ED8 /* button_back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A59E4F21635D81900CC9ED8 /* button_back@2x.png */; };
+		6A59E4F91635D81900CC9ED8 /* button_try_again.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A59E4F31635D81900CC9ED8 /* button_try_again.png */; };
+		6A59E4FA1635D81900CC9ED8 /* button_try_again@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A59E4F41635D81900CC9ED8 /* button_try_again@2x.png */; };
+		6A59E4FB1635D81900CC9ED8 /* game_over_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A59E4F51635D81900CC9ED8 /* game_over_bg.png */; };
+		6A59E4FC1635D81900CC9ED8 /* game_over_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A59E4F61635D81900CC9ED8 /* game_over_bg@2x.png */; };
+		6A59E5011635D87E00CC9ED8 /* GGGameOverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A59E5001635D87E00CC9ED8 /* GGGameOverViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -72,6 +79,14 @@
 		6A59E4E0163522FE00CC9ED8 /* GGGrid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGGrid.h; sourceTree = "<group>"; };
 		6A59E4E1163522FE00CC9ED8 /* GGGrid.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGGrid.m; sourceTree = "<group>"; };
 		6A59E4E316352B6800CC9ED8 /* GameConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameConstants.h; sourceTree = "<group>"; };
+		6A59E4F11635D81900CC9ED8 /* button_back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_back.png; sourceTree = "<group>"; };
+		6A59E4F21635D81900CC9ED8 /* button_back@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button_back@2x.png"; sourceTree = "<group>"; };
+		6A59E4F31635D81900CC9ED8 /* button_try_again.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_try_again.png; sourceTree = "<group>"; };
+		6A59E4F41635D81900CC9ED8 /* button_try_again@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button_try_again@2x.png"; sourceTree = "<group>"; };
+		6A59E4F51635D81900CC9ED8 /* game_over_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = game_over_bg.png; sourceTree = "<group>"; };
+		6A59E4F61635D81900CC9ED8 /* game_over_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "game_over_bg@2x.png"; sourceTree = "<group>"; };
+		6A59E4FF1635D87E00CC9ED8 /* GGGameOverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGGameOverViewController.h; sourceTree = "<group>"; };
+		6A59E5001635D87E00CC9ED8 /* GGGameOverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGGameOverViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,6 +142,7 @@
 				6A59E4EE16352CEA00CC9ED8 /* Controllers */,
 				6A59E4981634CBDE00CC9ED8 /* Supporting Files */,
 				6A59E4EC16352CE100CC9ED8 /* Models */,
+				6A59E4FD1635D86400CC9ED8 /* Views */,
 				6A59E4F016352D1A00CC9ED8 /* Helpers */,
 			);
 			path = Giochino;
@@ -149,6 +165,12 @@
 		6A59E4C31634FCD400CC9ED8 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				6A59E4F11635D81900CC9ED8 /* button_back.png */,
+				6A59E4F21635D81900CC9ED8 /* button_back@2x.png */,
+				6A59E4F31635D81900CC9ED8 /* button_try_again.png */,
+				6A59E4F41635D81900CC9ED8 /* button_try_again@2x.png */,
+				6A59E4F51635D81900CC9ED8 /* game_over_bg.png */,
+				6A59E4F61635D81900CC9ED8 /* game_over_bg@2x.png */,
 				6A59E4C51634FCEB00CC9ED8 /* button_2_players.png */,
 				6A59E4C61634FCEB00CC9ED8 /* button_2_players@2x.png */,
 				6A59E4C71634FCEB00CC9ED8 /* button_records.png */,
@@ -171,8 +193,6 @@
 				6A59E4BA1634E75800CC9ED8 /* GGSequence.m */,
 				6A59E4BC1634E86700CC9ED8 /* GGButton.h */,
 				6A59E4BD1634E86700CC9ED8 /* GGButton.m */,
-				6A59E4E0163522FE00CC9ED8 /* GGGrid.h */,
-				6A59E4E1163522FE00CC9ED8 /* GGGrid.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -184,6 +204,8 @@
 				6A59E4AD1634CBDE00CC9ED8 /* GGGameViewController.m */,
 				6A59E4D91634FD8400CC9ED8 /* GGMenuViewController.h */,
 				6A59E4DA1634FD8400CC9ED8 /* GGMenuViewController.m */,
+				6A59E4FF1635D87E00CC9ED8 /* GGGameOverViewController.h */,
+				6A59E5001635D87E00CC9ED8 /* GGGameOverViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -202,6 +224,15 @@
 				6A59E4E316352B6800CC9ED8 /* GameConstants.h */,
 			);
 			name = Helpers;
+			sourceTree = "<group>";
+		};
+		6A59E4FD1635D86400CC9ED8 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				6A59E4E0163522FE00CC9ED8 /* GGGrid.h */,
+				6A59E4E1163522FE00CC9ED8 /* GGGrid.m */,
+			);
+			name = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -271,6 +302,12 @@
 				6A59E4D61634FCEB00CC9ED8 /* button_single_player@2x.png in Resources */,
 				6A59E4D71634FCEB00CC9ED8 /* menu_bg.png in Resources */,
 				6A59E4D81634FCEB00CC9ED8 /* menu_bg@2x.png in Resources */,
+				6A59E4F71635D81900CC9ED8 /* button_back.png in Resources */,
+				6A59E4F81635D81900CC9ED8 /* button_back@2x.png in Resources */,
+				6A59E4F91635D81900CC9ED8 /* button_try_again.png in Resources */,
+				6A59E4FA1635D81900CC9ED8 /* button_try_again@2x.png in Resources */,
+				6A59E4FB1635D81900CC9ED8 /* game_over_bg.png in Resources */,
+				6A59E4FC1635D81900CC9ED8 /* game_over_bg@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -288,6 +325,7 @@
 				6A59E4BE1634E86700CC9ED8 /* GGButton.m in Sources */,
 				6A59E4DB1634FD8400CC9ED8 /* GGMenuViewController.m in Sources */,
 				6A59E4E2163522FE00CC9ED8 /* GGGrid.m in Sources */,
+				6A59E5011635D87E00CC9ED8 /* GGGameOverViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

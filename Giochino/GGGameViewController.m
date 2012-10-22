@@ -6,9 +6,13 @@
 //  Copyright (c) 2012 GG. All rights reserved.
 //
 
+#import <QuartzCore/QuartzCore.h>
+
 #import "GGGameViewController.h"
 #import "GGButton.h"
 #import "GGSequence.h"
+
+#import "GGGameOverViewController.h"
 
 @interface GGGameViewController ()
 @property (nonatomic, strong) GGGrid * grid;
@@ -26,7 +30,8 @@
 
     [self initGrid];
     [self initDragRecognizer];
-    [self startGame];
+    [self startNewGame];
+
 }
 
 - (void)initGrid {
@@ -58,7 +63,7 @@
 }
 
 #pragma mark - Game business logic
-- (void)startGame {
+- (void)startNewGame {
     self.computerSequence = [GGSequence sequence];
     [self nextLevel];
 }
@@ -69,7 +74,30 @@
     [self.computerSequence playCompletion:^{
         self.userSequence = [GGSequence sequence];
         [self userInteractionEnabled:YES];
+        [self showMessage:@"GO!"];
     }];
+}
+
+- (void)showMessage:(NSString *)message {
+    UILabel * label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 200, 50)];
+    label.backgroundColor = [UIColor clearColor];
+    label.textColor = [UIColor whiteColor];
+    label.textAlignment = NSTextAlignmentCenter;
+    label.text = message;
+    label.font = [UIFont systemFontOfSize:30.0f];
+    label.center = self.view.center;
+    [self.view addSubview:label];
+    [self userInteractionEnabled:NO];
+    [UIView animateWithDuration:1.0f
+                          delay:0.0f
+                        options:!UIViewAnimationOptionAllowUserInteraction
+                     animations:^{
+                         label.layer.affineTransform = CGAffineTransformMakeScale(10.0f, 10.0f);
+                         label.alpha = 0.0f;
+                     } completion:^(BOOL finished) {
+                         [label removeFromSuperview];
+                         [self userInteractionEnabled:YES];
+                     }];
 }
 
 - (void)checkSequence {
@@ -84,14 +112,9 @@
 }
 
 - (void)gameOver {
-    NSString * message = [NSString stringWithFormat:@"Game Over! You're result was %i. Try again!", self.computerSequence.length - 1];
-    UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"GAME OVER"
-                                                     message:message
-                                                    delegate:nil
-                                           cancelButtonTitle:@"OK"
-                                           otherButtonTitles:nil, nil];
-    [alert show];
-    [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+    GGGameOverViewController * gameOverVC = [self.storyboard instantiateViewControllerWithIdentifier:@"GameOverVC"];
+    gameOverVC.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+    [self presentViewController:gameOverVC animated:YES completion:nil];
 }
 
 - (void)userInteractionEnabled:(BOOL)enabled {
