@@ -17,7 +17,10 @@
 		6A59E4A61634CBDE00CC9ED8 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A59E4A51634CBDE00CC9ED8 /* Default@2x.png */; };
 		6A59E4A81634CBDE00CC9ED8 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A59E4A71634CBDE00CC9ED8 /* Default-568h@2x.png */; };
 		6A59E4AB1634CBDE00CC9ED8 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6A59E4A91634CBDE00CC9ED8 /* MainStoryboard.storyboard */; };
-		6A59E4AE1634CBDE00CC9ED8 /* GGViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A59E4AD1634CBDE00CC9ED8 /* GGViewController.m */; };
+		6A59E4AE1634CBDE00CC9ED8 /* GGGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A59E4AD1634CBDE00CC9ED8 /* GGGameViewController.m */; };
+		6A59E4B81634D9F600CC9ED8 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A59E4B71634D9F600CC9ED8 /* QuartzCore.framework */; };
+		6A59E4BB1634E75800CC9ED8 /* GGSequence.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A59E4BA1634E75800CC9ED8 /* GGSequence.m */; };
+		6A59E4BE1634E86700CC9ED8 /* GGButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A59E4BD1634E86700CC9ED8 /* GGButton.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,8 +38,13 @@
 		6A59E4A51634CBDE00CC9ED8 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		6A59E4A71634CBDE00CC9ED8 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		6A59E4AA1634CBDE00CC9ED8 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
-		6A59E4AC1634CBDE00CC9ED8 /* GGViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GGViewController.h; sourceTree = "<group>"; };
-		6A59E4AD1634CBDE00CC9ED8 /* GGViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GGViewController.m; sourceTree = "<group>"; };
+		6A59E4AC1634CBDE00CC9ED8 /* GGGameViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GGGameViewController.h; sourceTree = "<group>"; };
+		6A59E4AD1634CBDE00CC9ED8 /* GGGameViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GGGameViewController.m; sourceTree = "<group>"; };
+		6A59E4B71634D9F600CC9ED8 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		6A59E4B91634E75800CC9ED8 /* GGSequence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGSequence.h; sourceTree = "<group>"; };
+		6A59E4BA1634E75800CC9ED8 /* GGSequence.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGSequence.m; sourceTree = "<group>"; };
+		6A59E4BC1634E86700CC9ED8 /* GGButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGButton.h; sourceTree = "<group>"; };
+		6A59E4BD1634E86700CC9ED8 /* GGButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGButton.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -44,6 +52,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6A59E4B81634D9F600CC9ED8 /* QuartzCore.framework in Frameworks */,
 				6A59E4921634CBDE00CC9ED8 /* UIKit.framework in Frameworks */,
 				6A59E4941634CBDE00CC9ED8 /* Foundation.framework in Frameworks */,
 				6A59E4961634CBDE00CC9ED8 /* CoreGraphics.framework in Frameworks */,
@@ -73,6 +82,7 @@
 		6A59E4901634CBDE00CC9ED8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6A59E4B71634D9F600CC9ED8 /* QuartzCore.framework */,
 				6A59E4911634CBDE00CC9ED8 /* UIKit.framework */,
 				6A59E4931634CBDE00CC9ED8 /* Foundation.framework */,
 				6A59E4951634CBDE00CC9ED8 /* CoreGraphics.framework */,
@@ -86,9 +96,13 @@
 				6A59E4A01634CBDE00CC9ED8 /* GGAppDelegate.h */,
 				6A59E4A11634CBDE00CC9ED8 /* GGAppDelegate.m */,
 				6A59E4A91634CBDE00CC9ED8 /* MainStoryboard.storyboard */,
-				6A59E4AC1634CBDE00CC9ED8 /* GGViewController.h */,
-				6A59E4AD1634CBDE00CC9ED8 /* GGViewController.m */,
+				6A59E4AC1634CBDE00CC9ED8 /* GGGameViewController.h */,
+				6A59E4AD1634CBDE00CC9ED8 /* GGGameViewController.m */,
 				6A59E4981634CBDE00CC9ED8 /* Supporting Files */,
+				6A59E4B91634E75800CC9ED8 /* GGSequence.h */,
+				6A59E4BA1634E75800CC9ED8 /* GGSequence.m */,
+				6A59E4BC1634E86700CC9ED8 /* GGButton.h */,
+				6A59E4BD1634E86700CC9ED8 /* GGButton.m */,
 			);
 			path = Giochino;
 			sourceTree = "<group>";
@@ -176,7 +190,9 @@
 			files = (
 				6A59E49E1634CBDE00CC9ED8 /* main.m in Sources */,
 				6A59E4A21634CBDE00CC9ED8 /* GGAppDelegate.m in Sources */,
-				6A59E4AE1634CBDE00CC9ED8 /* GGViewController.m in Sources */,
+				6A59E4AE1634CBDE00CC9ED8 /* GGGameViewController.m in Sources */,
+				6A59E4BB1634E75800CC9ED8 /* GGSequence.m in Sources */,
+				6A59E4BE1634E86700CC9ED8 /* GGButton.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

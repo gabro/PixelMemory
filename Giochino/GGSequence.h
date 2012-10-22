@@ -8,6 +8,14 @@
 
 #import <Foundation/Foundation.h>
 
+@class GGButton;
+
 @interface GGSequence : NSObject
+
++ (GGSequence *)sequence;
+
+- (void)addButton:(GGButton *)button;
+
+- (void)play;
 
 @end

@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface GGViewController : UIViewController
+@interface GGGameViewController : UIViewController
 
 @end
