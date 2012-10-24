@@ -9,6 +9,9 @@
 #ifndef Giochino_GameConstants_h
 #define Giochino_GameConstants_h
 
+// Game constanst
+#define TURNS_INTERVAL 0.5f
+
 // Grid constants
 #define BUTTONS_PER_ROW 4
 #define BUTTONS_PER_COLUMN 6
@@ -20,10 +23,14 @@
 #define BUTTON_LIGHT_UP_ANIMATION_DURATION 0.1f
 #define BUTTON_LIGHT_DOWN_ANIMATION_DURATION 0.25f
 #define BUTTON_LIGHT_UP_PERSISTANCE 0.1f
-#define BASE_ALPHA 0.2f
+#define BASE_ALPHA 0.1f
 
 
 // Sequence constants
 #define PLAY_INTERVAL 0.5f
+#define PLAY_SHAPE_INTERVAL 0.1f
+
+// Misc
+#define NEUROPOL_FONT(s) [UIFont fontWithName:@"NEUROPOL" size:s]
 
 #endif

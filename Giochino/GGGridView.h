@@ -11,18 +11,23 @@
 @class GGButton;
 @class GGSequence;
 
-@protocol GGGridDelegate <NSObject>
+@protocol GGGridViewDelegate <NSObject>
 
 - (void)didPressButton:(GGButton *)button;
 
 @end
 
-@interface GGGrid : UIView
+@interface GGGridView : UIView
 
-@property (nonatomic, weak) id<GGGridDelegate> delegate;
+@property (nonatomic, weak) id<GGGridViewDelegate> delegate;
 
 - (GGButton *)randomButton;
 - (GGSequence *)randomSequenceWithLength:(NSUInteger)length;
 - (GGButton *)buttonAtLocation:(CGPoint)point;
+
+
+- (void)playSequence:(GGSequence *)sequence;
+- (void)playSequence:(GGSequence *)sequence completion:(void(^)())completion;
+- (void)playSequence:(GGSequence *)sequence completion:(void(^)())completion interval:(NSTimeInterval)interval;
 
 @end

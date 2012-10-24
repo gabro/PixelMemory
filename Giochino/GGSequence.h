@@ -8,20 +8,17 @@
 
 #import <Foundation/Foundation.h>
 
-@class GGButton;
+@class GGGridShape;
 
 @interface GGSequence : NSObject
 
+@property (nonatomic, readonly) NSArray * shapes;
+
 + (GGSequence *)sequence;
 
-- (void)addButton:(GGButton *)button;
+- (NSUInteger)length;
 
-- (void)play;
-- (void)playCompletion:(void(^)())completion;
-- (void)playCompletion:(void(^)())completion interval:(NSTimeInterval)interval;
-
-- (NSInteger)length;
-
-- (GGButton *)elementAtIndex:(NSUInteger)index;
+- (void)addShape:(GGGridShape *)shape;
+- (GGGridShape *)elementAtIndex:(NSUInteger)index;
 
 @end

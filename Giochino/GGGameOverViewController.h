@@ -10,4 +10,6 @@
 
 @interface GGGameOverViewController : UIViewController
 
+@property (weak, nonatomic) IBOutlet UILabel *resultLabel;
+
 @end

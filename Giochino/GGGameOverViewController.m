@@ -18,6 +18,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"game_over_bg"]];
+    self.resultLabel.font = NEUROPOL_FONT(20.0f);
+    self.resultLabel.text = @"Ciao mamma";
 }
 
 - (IBAction)back {
@@ -26,9 +28,15 @@
 
 - (IBAction)tryAgain {
     GGGameViewController * gameController = (GGGameViewController *)self.presentingViewController;
-    [gameController dismissViewControllerAnimated:YES completion:^{
-        [gameController startNewGame];
-    }];
+    [gameController dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (NSUInteger)supportedInterfaceOrientations {
+    return UIInterfaceOrientationPortrait;
+}
+
+- (BOOL)shouldAutorotate {
+    return NO;
 }
 
 @end

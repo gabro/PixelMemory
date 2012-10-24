@@ -35,9 +35,9 @@
                                     <segue destination="2" kind="modal" modalTransitionStyle="crossDissolve" id="zyQ-GS-b1F"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VDc-fl-TjJ">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZtZ-cP-JqU">
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" backgroundImage="button_records.png">
+                                <state key="normal" backgroundImage="button_settings.png">
                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -45,9 +45,9 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZtZ-cP-JqU">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h7p-WS-uXe">
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" backgroundImage="button_settings.png">
+                                <state key="normal" backgroundImage="button_records.png">
                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -58,13 +58,13 @@
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="VDc-fl-TjJ" secondAttribute="bottom" constant="102" id="ERl-bl-M0U"/>
-                            <constraint firstItem="PWG-ml-LAv" firstAttribute="top" secondItem="cxd-ad-tbQ" secondAttribute="top" constant="153" id="GOo-sR-RNX"/>
-                            <constraint firstAttribute="bottom" secondItem="ZtZ-cP-JqU" secondAttribute="bottom" constant="13" id="Rtp-sd-pYM"/>
-                            <constraint firstItem="xaw-Rj-jhh" firstAttribute="top" secondItem="cxd-ad-tbQ" secondAttribute="top" constant="226" id="cR7-zz-weC"/>
-                            <constraint firstItem="ZtZ-cP-JqU" firstAttribute="leading" secondItem="VDc-fl-TjJ" secondAttribute="leading" type="default" id="eG5-Vz-P4I"/>
+                            <constraint firstItem="h7p-WS-uXe" firstAttribute="leading" secondItem="cxd-ad-tbQ" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="8i8-Ee-4lN"/>
+                            <constraint firstItem="ZtZ-cP-JqU" firstAttribute="top" secondItem="h7p-WS-uXe" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="9Ar-di-mm5"/>
+                            <constraint firstItem="h7p-WS-uXe" firstAttribute="top" secondItem="xaw-Rj-jhh" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="Fu1-hz-Jq7"/>
                             <constraint firstItem="xaw-Rj-jhh" firstAttribute="leading" secondItem="cxd-ad-tbQ" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="esL-rK-Ggj"/>
-                            <constraint firstItem="VDc-fl-TjJ" firstAttribute="centerX" secondItem="xaw-Rj-jhh" secondAttribute="centerX" type="default" id="fWd-nT-pSQ"/>
+                            <constraint firstItem="PWG-ml-LAv" firstAttribute="top" secondItem="cxd-ad-tbQ" secondAttribute="top" constant="191" id="gzR-oQ-bHO"/>
+                            <constraint firstItem="xaw-Rj-jhh" firstAttribute="top" secondItem="PWG-ml-LAv" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="j7D-ai-laE"/>
+                            <constraint firstItem="ZtZ-cP-JqU" firstAttribute="leading" secondItem="cxd-ad-tbQ" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="pAg-0e-dLN"/>
                             <constraint firstItem="PWG-ml-LAv" firstAttribute="leading" secondItem="cxd-ad-tbQ" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="u2l-jp-C4w"/>
                         </constraints>
                     </view>
@@ -122,16 +122,26 @@
                                     <action selector="back" destination="UQY-3L-ZBE" eventType="touchUpInside" id="T5q-X4-FfD"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Result" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vrU-Dm-rK6">
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="bRO-5X-iv6" firstAttribute="leading" secondItem="fGS-FL-5X1" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="2mW-Ki-UQt"/>
                             <constraint firstItem="klx-zU-3qc" firstAttribute="top" secondItem="bRO-5X-iv6" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="FPo-f9-3bC"/>
+                            <constraint firstItem="vrU-Dm-rK6" firstAttribute="centerX" secondItem="bRO-5X-iv6" secondAttribute="centerX" type="default" id="eIw-7L-XzL"/>
                             <constraint firstAttribute="bottom" secondItem="klx-zU-3qc" secondAttribute="bottom" constant="20" symbolic="YES" type="default" id="eXK-X2-GwC"/>
+                            <constraint firstItem="vrU-Dm-rK6" firstAttribute="top" secondItem="fGS-FL-5X1" secondAttribute="top" constant="231" id="jO7-vo-eCo"/>
                             <constraint firstItem="klx-zU-3qc" firstAttribute="leading" secondItem="fGS-FL-5X1" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="kBY-Yp-L4A"/>
                         </constraints>
                     </view>
                     <nil key="simulatedStatusBarMetrics"/>
+                    <connections>
+                        <outlet property="resultLabel" destination="vrU-Dm-rK6" id="Riz-i1-I3l"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="h8r-Uq-zlX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -146,20 +156,6 @@
         <image name="button_single_player.png" width="280" height="63"/>
         <image name="button_try_again.png" width="280" height="63"/>
     </resources>
-    <classes>
-        <class className="GGGameOverViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/GGGameOverViewController.h"/>
-        </class>
-        <class className="GGGameViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/GGGameViewController.h"/>
-        </class>
-        <class className="GGMenuViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/GGMenuViewController.h"/>
-        </class>
-        <class className="NSLayoutConstraint" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

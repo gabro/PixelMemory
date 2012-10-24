@@ -10,6 +10,11 @@
 
 @interface GGButton : UIButton
 
+@property (nonatomic, readonly) NSUInteger index;
+
+- (id)initWithFrame:(CGRect)frame index:(NSUInteger)index;
+
 - (void)lightUp;
+- (void)lightUpCompletion:(void(^)(BOOL finished))completion;
 
 @end

@@ -1,4 +1,4 @@
-//
+    //
 //  GGViewController.m
 //  Giochino
 //
@@ -11,11 +11,12 @@
 #import "GGGameViewController.h"
 #import "GGButton.h"
 #import "GGSequence.h"
+#import "GGGridShape.h"
 
 #import "GGGameOverViewController.h"
 
 @interface GGGameViewController ()
-@property (nonatomic, strong) GGGrid * grid;
+@property (nonatomic, strong) GGGridView * gridView;
 @property (nonatomic, strong) GGSequence * computerSequence;
 @property (nonatomic, strong) GGSequence * userSequence;
 @end
@@ -30,14 +31,17 @@
 
     [self initGrid];
     [self initDragRecognizer];
-    [self startNewGame];
+}
 
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [self startNewGame];
 }
 
 - (void)initGrid {
-    self.grid = [[GGGrid alloc] initWithFrame:self.view.frame];
-    self.grid.delegate = self;
-    [self.view addSubview:self.grid];
+    self.gridView = [[GGGridView alloc] initWithFrame:self.view.frame];
+    self.gridView.delegate = self;
+    [self.view addSubview:self.gridView];
 }
 
 #pragma mark - Drag Recognizer
@@ -49,46 +53,53 @@
 }
 
 - (void)handleDrag:(UILongPressGestureRecognizer *)recognizer {
-    CGPoint touchPoint = [recognizer locationInView:self.grid];
+    CGPoint touchPoint = [recognizer locationInView:self.gridView];
     if (recognizer.state == UIGestureRecognizerStateChanged) {
-        [[self.grid buttonAtLocation:touchPoint] lightUp];
+        [[self.gridView buttonAtLocation:touchPoint] lightUp];
     }
 }
 
 #pragma mark - GGGridDelegate
 - (void)didPressButton:(GGButton *)button {
-    [button lightUp];
-    [self.userSequence addButton:button];
-    [self checkSequence];
+    GGGridShape * shape = [GGGridShape shape];
+    [shape addIndex:button.index];
+    [self.userSequence addShape:shape];
+    [button lightUpCompletion:^(BOOL finished) {
+        [self checkSequence];
+    }];
 }
 
 #pragma mark - Game business logic
 - (void)startNewGame {
     self.computerSequence = [GGSequence sequence];
-    [self nextLevel];
-}
-
-- (void)nextLevel {
-    [self.computerSequence addButton:[self.grid randomButton]];
-    [self userInteractionEnabled:NO];
-    [self.computerSequence playCompletion:^{
-        self.userSequence = [GGSequence sequence];
-        [self userInteractionEnabled:YES];
-        [self showMessage:@"GO!"];
+    [self showMessage:@"GO!" completion:^{
+        [self nextLevel];
     }];
 }
 
-- (void)showMessage:(NSString *)message {
+- (void)nextLevel {
+    GGGridShape * shape = [GGGridShape shape];
+    [shape addIndex:[self.gridView randomButton].index];
+    [self.computerSequence addShape:shape];
+    [self userInteractionEnabled:NO];
+    [self.gridView playSequence:self.computerSequence completion:^{
+        self.userSequence = [GGSequence sequence];
+        [self userInteractionEnabled:YES];
+    }];
+}
+
+- (void)showMessage:(NSString *)message
+         completion:(void(^)())completion {
     UILabel * label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 200, 50)];
     label.backgroundColor = [UIColor clearColor];
     label.textColor = [UIColor whiteColor];
     label.textAlignment = NSTextAlignmentCenter;
     label.text = message;
-    label.font = [UIFont systemFontOfSize:30.0f];
+    label.font = NEUROPOL_FONT(30.0f);
     label.center = self.view.center;
     [self.view addSubview:label];
     [self userInteractionEnabled:NO];
-    [UIView animateWithDuration:1.0f
+    [UIView animateWithDuration:1.5f
                           delay:0.0f
                         options:!UIViewAnimationOptionAllowUserInteraction
                      animations:^{
@@ -97,6 +108,7 @@
                      } completion:^(BOOL finished) {
                          [label removeFromSuperview];
                          [self userInteractionEnabled:YES];
+                         completion();
                      }];
 }
 
@@ -104,21 +116,33 @@
     for (int i = 0; i < self.userSequence.length; i++) {
         if (![[self.userSequence elementAtIndex:i] isEqual:[self.computerSequence elementAtIndex:i]]) {
             [self gameOver];
+            return;
         }
     }
     if (self.userSequence.length == self.computerSequence.length) {
-        [self nextLevel];
+        [self userInteractionEnabled:NO];
+        [self performSelector:@selector(nextLevel) withObject:nil afterDelay:TURNS_INTERVAL];
     }
 }
 
 - (void)gameOver {
     GGGameOverViewController * gameOverVC = [self.storyboard instantiateViewControllerWithIdentifier:@"GameOverVC"];
     gameOverVC.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
-    [self presentViewController:gameOverVC animated:YES completion:nil];
+    [self showMessage:@"Game Over" completion:^{
+        [self presentViewController:gameOverVC animated:YES completion:nil];
+    }];
 }
 
 - (void)userInteractionEnabled:(BOOL)enabled {
     self.view.userInteractionEnabled = enabled;
+}
+
+- (NSUInteger)supportedInterfaceOrientations {
+    return UIInterfaceOrientationPortrait;
+}
+
+- (BOOL)shouldAutorotate {
+    return NO;
 }
 
 @end

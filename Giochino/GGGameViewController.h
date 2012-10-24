@@ -7,9 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "GGGrid.h"
+#import "GGGridView.h"
 
-@interface GGGameViewController : UIViewController <GGGridDelegate>
+@interface GGGameViewController : UIViewController <GGGridViewDelegate>
 
 - (void)startNewGame;
 

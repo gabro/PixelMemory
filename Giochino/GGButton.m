@@ -10,14 +10,25 @@
 
 @implementation GGButton
 
+- (id)initWithFrame:(CGRect)frame index:(NSUInteger)index {
+    if (self = [super initWithFrame:frame]) {
+        _index = index;
+    }
+    return self;
+}
+
 - (void)lightUp {
-    void (^completion)(BOOL) = ^(BOOL finished) {
+    [self lightUpCompletion:nil];
+}
+
+- (void)lightUpCompletion:(void (^)(BOOL finished))completion {
+    void (^lightUpCompletion)(BOOL) = ^(BOOL finished) {
         [UIView animateWithDuration:BUTTON_LIGHT_DOWN_ANIMATION_DURATION
                               delay:BUTTON_LIGHT_UP_PERSISTANCE
                             options:!UIViewAnimationOptionAllowUserInteraction
                          animations:^{
                              self.alpha = BASE_ALPHA;
-                         } completion:nil];
+                         } completion:completion];
     };
     
     [UIView animateWithDuration:BUTTON_LIGHT_UP_ANIMATION_DURATION
@@ -25,7 +36,8 @@
                         options:!UIViewAnimationOptionAllowUserInteraction | UIViewAnimationOptionBeginFromCurrentState
                      animations:^{
                          self.alpha = 1.0f;
-                     } completion:completion];
+                     } completion:lightUpCompletion];
+
 }
 
 @end

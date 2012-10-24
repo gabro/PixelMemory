@@ -32,7 +32,7 @@
 		6A59E4D71634FCEB00CC9ED8 /* menu_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A59E4CD1634FCEB00CC9ED8 /* menu_bg.png */; };
 		6A59E4D81634FCEB00CC9ED8 /* menu_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A59E4CE1634FCEB00CC9ED8 /* menu_bg@2x.png */; };
 		6A59E4DB1634FD8400CC9ED8 /* GGMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A59E4DA1634FD8400CC9ED8 /* GGMenuViewController.m */; };
-		6A59E4E2163522FE00CC9ED8 /* GGGrid.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A59E4E1163522FE00CC9ED8 /* GGGrid.m */; };
+		6A59E4E2163522FE00CC9ED8 /* GGGridView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A59E4E1163522FE00CC9ED8 /* GGGridView.m */; };
 		6A59E4F71635D81900CC9ED8 /* button_back.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A59E4F11635D81900CC9ED8 /* button_back.png */; };
 		6A59E4F81635D81900CC9ED8 /* button_back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A59E4F21635D81900CC9ED8 /* button_back@2x.png */; };
 		6A59E4F91635D81900CC9ED8 /* button_try_again.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A59E4F31635D81900CC9ED8 /* button_try_again.png */; };
@@ -40,6 +40,8 @@
 		6A59E4FB1635D81900CC9ED8 /* game_over_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A59E4F51635D81900CC9ED8 /* game_over_bg.png */; };
 		6A59E4FC1635D81900CC9ED8 /* game_over_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A59E4F61635D81900CC9ED8 /* game_over_bg@2x.png */; };
 		6A59E5011635D87E00CC9ED8 /* GGGameOverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A59E5001635D87E00CC9ED8 /* GGGameOverViewController.m */; };
+		6A59E5031635E8D800CC9ED8 /* NEUROPOL.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6A59E5021635E8C600CC9ED8 /* NEUROPOL.ttf */; };
+		6A8ACA5616371ADC000F422F /* GGGridShape.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A8ACA5516371ADC000F422F /* GGGridShape.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -76,8 +78,8 @@
 		6A59E4CE1634FCEB00CC9ED8 /* menu_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menu_bg@2x.png"; sourceTree = "<group>"; };
 		6A59E4D91634FD8400CC9ED8 /* GGMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGMenuViewController.h; sourceTree = "<group>"; };
 		6A59E4DA1634FD8400CC9ED8 /* GGMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGMenuViewController.m; sourceTree = "<group>"; };
-		6A59E4E0163522FE00CC9ED8 /* GGGrid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGGrid.h; sourceTree = "<group>"; };
-		6A59E4E1163522FE00CC9ED8 /* GGGrid.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGGrid.m; sourceTree = "<group>"; };
+		6A59E4E0163522FE00CC9ED8 /* GGGridView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGGridView.h; sourceTree = "<group>"; };
+		6A59E4E1163522FE00CC9ED8 /* GGGridView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGGridView.m; sourceTree = "<group>"; };
 		6A59E4E316352B6800CC9ED8 /* GameConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameConstants.h; sourceTree = "<group>"; };
 		6A59E4F11635D81900CC9ED8 /* button_back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_back.png; sourceTree = "<group>"; };
 		6A59E4F21635D81900CC9ED8 /* button_back@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button_back@2x.png"; sourceTree = "<group>"; };
@@ -87,6 +89,9 @@
 		6A59E4F61635D81900CC9ED8 /* game_over_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "game_over_bg@2x.png"; sourceTree = "<group>"; };
 		6A59E4FF1635D87E00CC9ED8 /* GGGameOverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGGameOverViewController.h; sourceTree = "<group>"; };
 		6A59E5001635D87E00CC9ED8 /* GGGameOverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGGameOverViewController.m; sourceTree = "<group>"; };
+		6A59E5021635E8C600CC9ED8 /* NEUROPOL.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = NEUROPOL.ttf; sourceTree = "<group>"; };
+		6A8ACA5416371ADC000F422F /* GGGridShape.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGGridShape.h; sourceTree = "<group>"; };
+		6A8ACA5516371ADC000F422F /* GGGridShape.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGGridShape.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -193,6 +198,8 @@
 				6A59E4BA1634E75800CC9ED8 /* GGSequence.m */,
 				6A59E4BC1634E86700CC9ED8 /* GGButton.h */,
 				6A59E4BD1634E86700CC9ED8 /* GGButton.m */,
+				6A8ACA5416371ADC000F422F /* GGGridShape.h */,
+				6A8ACA5516371ADC000F422F /* GGGridShape.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -213,6 +220,7 @@
 		6A59E4EF16352D0600CC9ED8 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				6A59E5021635E8C600CC9ED8 /* NEUROPOL.ttf */,
 				6A59E4C31634FCD400CC9ED8 /* Images */,
 			);
 			name = Resources;
@@ -229,8 +237,8 @@
 		6A59E4FD1635D86400CC9ED8 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				6A59E4E0163522FE00CC9ED8 /* GGGrid.h */,
-				6A59E4E1163522FE00CC9ED8 /* GGGrid.m */,
+				6A59E4E0163522FE00CC9ED8 /* GGGridView.h */,
+				6A59E4E1163522FE00CC9ED8 /* GGGridView.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -287,6 +295,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6A59E5031635E8D800CC9ED8 /* NEUROPOL.ttf in Resources */,
 				6A59E49C1634CBDE00CC9ED8 /* InfoPlist.strings in Resources */,
 				6A59E4A41634CBDE00CC9ED8 /* Default.png in Resources */,
 				6A59E4A61634CBDE00CC9ED8 /* Default@2x.png in Resources */,
@@ -324,8 +333,9 @@
 				6A59E4BB1634E75800CC9ED8 /* GGSequence.m in Sources */,
 				6A59E4BE1634E86700CC9ED8 /* GGButton.m in Sources */,
 				6A59E4DB1634FD8400CC9ED8 /* GGMenuViewController.m in Sources */,
-				6A59E4E2163522FE00CC9ED8 /* GGGrid.m in Sources */,
+				6A59E4E2163522FE00CC9ED8 /* GGGridView.m in Sources */,
 				6A59E5011635D87E00CC9ED8 /* GGGameOverViewController.m in Sources */,
+				6A8ACA5616371ADC000F422F /* GGGridShape.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

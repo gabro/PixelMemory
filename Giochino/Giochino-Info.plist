@@ -40,5 +40,9 @@
 	<true/>
 	<key>UIApplicationExitsOnSuspend</key>
 	<true/>
+	<key>UIAppFonts</key>
+	<array>
+		<string>NEUROPOL.ttf</string>
+	</array>
 </dict>
 </plist>
