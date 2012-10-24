@@ -25,7 +25,6 @@
 @property (nonatomic, assign) BOOL isPlaying;
 @property (nonatomic, copy) void (^sequenceCompletion)();
 @property (nonatomic, copy) void (^shapeCompletion)();
-@property (nonatomic, strong) GGButton * lastSelectedButton;
 @property (nonatomic, strong) GGGridShape * currentShape;
 @end
 
@@ -198,9 +197,9 @@
         NSLog(@"New Shape Step");
         [[self buttonAtIndex:index.intValue] lightUpAndDownCompletion:nil];
 
-        [self performSelector:@selector(playShapeStep) withObject:nil afterDelay:0.20];
+        [self performSelector:@selector(playShapeStep) withObject:nil afterDelay:0.20]; // TODO
     } else {
-        [self performSelector:@selector(completeShape) withObject:nil afterDelay:0.5];
+        [self performSelector:@selector(completeShape) withObject:nil afterDelay:0.5]; // TODO
     }
 }
 
@@ -215,17 +214,17 @@
     self.currentShape = [GGGridShape shape];
     [self.currentShape addIndex:selectedButton.index];
     [selectedButton lightUpAndDown];
-    
-    self.lastSelectedButton = selectedButton;
 }
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
     UITouch * touch = [touches anyObject];
     GGButton * selectedButton = [self buttonAtLocation:[touch locationInView:self]];
-    if (![selectedButton isEqual:self.lastSelectedButton]) {
+    if (![self.currentShape.indices containsObject:@(selectedButton.index)]) {
         [self.currentShape addIndex:selectedButton.index];
-        self.lastSelectedButton = selectedButton;
         [selectedButton lightUpAndDown];
+    } else if (selectedButton.index != [self.currentShape.indices.lastObject integerValue]) {
+        [self touchesEnded:touches withEvent:event];
+        [self touchesBegan:touches withEvent:event];
     }
 }
 

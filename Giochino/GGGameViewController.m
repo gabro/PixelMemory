@@ -111,7 +111,7 @@
 }
 
 - (void)userInteractionEnabled:(BOOL)enabled {
-    self.view.userInteractionEnabled = enabled;
+    self.gridView.userInteractionEnabled = enabled;
 }
 
 - (NSUInteger)supportedInterfaceOrientations {
