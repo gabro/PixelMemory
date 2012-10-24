@@ -79,35 +79,40 @@
     [shape addIndex:[self randomButton].index];
     for (NSUInteger i = 0; i < length - 1; i++) {
         NSUInteger lastIndex = [shape.indices.lastObject integerValue];
-        [shape addIndex:[self randomIndexAdjacentToIndex:lastIndex]];
+        NSNumber * nextIndex = [self randomIndexAdjacentToIndex:lastIndex excluding:[NSSet setWithArray:shape.indices]];
+        if (nil != nextIndex) {
+            [shape addIndex:nextIndex.integerValue];
+        } else {
+            break;
+        }
     }
     return shape;
 }
 
-- (NSUInteger)randomIndexAdjacentToIndex:(NSUInteger)index {
+- (NSNumber *)randomIndexAdjacentToIndex:(NSUInteger)index excluding:(NSSet *)excluded {
     NSMutableSet * adjacentIndices = [NSMutableSet set];
     
     //RIGHT
-    if ((NSInteger)index % BUTTONS_PER_ROW + 1 < BUTTONS_PER_ROW) {
+    if ((NSInteger)index % BUTTONS_PER_ROW + 1 < BUTTONS_PER_ROW && ![excluded containsObject:@(index + 1)]) {
         [adjacentIndices addObject:@(index + 1)];
     }
     
     //LEFT
-    if ((NSInteger)index % BUTTONS_PER_ROW - 1 >= 0) {
+    if ((NSInteger)index % BUTTONS_PER_ROW - 1 >= 0 && ![excluded containsObject:@(index - 1)]) {
         [adjacentIndices addObject:@(index - 1)];
     }
     
     //UP
-    if ((NSInteger)index - BUTTONS_PER_ROW >= 0) {
+    if ((NSInteger)index - BUTTONS_PER_ROW >= 0 && ![excluded containsObject:@(index - BUTTONS_PER_ROW)]) {
         [adjacentIndices addObject:@(index - BUTTONS_PER_ROW)];
     }
     
     //DOWN
-    if ((NSInteger)index + BUTTONS_PER_ROW < BUTTONS_PER_ROW*BUTTONS_PER_COLUMN) {
+    if ((NSInteger)index + BUTTONS_PER_ROW < BUTTONS_PER_ROW*BUTTONS_PER_COLUMN && ![excluded containsObject:@(index + BUTTONS_PER_ROW)]) {
         [adjacentIndices addObject:@(index + BUTTONS_PER_ROW)];
     }
     
-    return [[adjacentIndices anyObject] integerValue];
+    return [adjacentIndices anyObject];
 }
 
 - (GGButton *)randomButton {
