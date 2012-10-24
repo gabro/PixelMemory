@@ -10,10 +10,12 @@
 
 @class GGButton;
 @class GGSequence;
+@class GGGridShape;
+@class GGGridView;
 
 @protocol GGGridViewDelegate <NSObject>
 
-- (void)didPressButton:(GGButton *)button;
+- (void)gridView:(GGGridView *)gridView didSelectShape:(GGGridShape *)shape;
 
 @end
 
@@ -21,10 +23,8 @@
 
 @property (nonatomic, weak) id<GGGridViewDelegate> delegate;
 
-- (GGButton *)randomButton;
 - (GGSequence *)randomSequenceWithLength:(NSUInteger)length;
-- (GGButton *)buttonAtLocation:(CGPoint)point;
-
+- (GGGridShape *)randomShapeWithLength:(NSUInteger)length;
 
 - (void)playSequence:(GGSequence *)sequence;
 - (void)playSequence:(GGSequence *)sequence completion:(void(^)())completion;

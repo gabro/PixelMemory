@@ -24,18 +24,16 @@
 @implementation GGGameViewController
 
 #pragma mark - Initializers
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
-    // Become first responder in order to listen to shake events
 
     [self initGrid];
-    [self initDragRecognizer];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     [self startNewGame];
+//    [self.gridView playSequence:[self.gridView randomSequenceWithLength:10]];
 }
 
 - (void)initGrid {
@@ -44,29 +42,10 @@
     [self.view addSubview:self.gridView];
 }
 
-#pragma mark - Drag Recognizer
-- (void)initDragRecognizer {
-    UILongPressGestureRecognizer * dragger = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleDrag:)];
-    dragger.numberOfTapsRequired=0;
-    dragger.minimumPressDuration=0.005;
-    [self.view addGestureRecognizer:dragger];
-}
-
-- (void)handleDrag:(UILongPressGestureRecognizer *)recognizer {
-    CGPoint touchPoint = [recognizer locationInView:self.gridView];
-    if (recognizer.state == UIGestureRecognizerStateChanged) {
-        [[self.gridView buttonAtLocation:touchPoint] lightUp];
-    }
-}
-
 #pragma mark - GGGridDelegate
-- (void)didPressButton:(GGButton *)button {
-    GGGridShape * shape = [GGGridShape shape];
-    [shape addIndex:button.index];
+- (void)gridView:(GGGridView *)gridView didSelectShape:(GGGridShape *)shape {
     [self.userSequence addShape:shape];
-    [button lightUpCompletion:^(BOOL finished) {
-        [self checkSequence];
-    }];
+    [self checkSequence];
 }
 
 #pragma mark - Game business logic
@@ -78,9 +57,7 @@
 }
 
 - (void)nextLevel {
-    GGGridShape * shape = [GGGridShape shape];
-    [shape addIndex:[self.gridView randomButton].index];
-    [self.computerSequence addShape:shape];
+    [self.computerSequence addShape:[self.gridView randomShapeWithLength:(int)arc4random_uniform(4)+1]];
     [self userInteractionEnabled:NO];
     [self.gridView playSequence:self.computerSequence completion:^{
         self.userSequence = [GGSequence sequence];

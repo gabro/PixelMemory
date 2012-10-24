@@ -27,8 +27,8 @@
 
 
 // Sequence constants
-#define PLAY_INTERVAL 0.5f
-#define PLAY_SHAPE_INTERVAL 0.1f
+#define PLAY_INTERVAL 1.2f
+#define PLAY_SHAPE_INTERVAL 0.2f
 
 // Misc
 #define NEUROPOL_FONT(s) [UIFont fontWithName:@"NEUROPOL" size:s]

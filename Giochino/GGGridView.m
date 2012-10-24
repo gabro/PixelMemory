@@ -25,6 +25,8 @@
 @property (nonatomic, assign) BOOL isPlaying;
 @property (nonatomic, copy) void (^sequenceCompletion)();
 @property (nonatomic, copy) void (^shapeCompletion)();
+@property (nonatomic, strong) GGButton * lastSelectedButton;
+@property (nonatomic, strong) GGGridShape * currentShape;
 @end
 
 @implementation GGGridView
@@ -60,7 +62,7 @@
             GGButton * button = [[GGButton alloc] initWithFrame:buttonFrame index:(i * BUTTONS_PER_ROW + j)];
             button.backgroundColor = [self randomColor];
             button.alpha = BASE_ALPHA;
-            [button addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchDown];
+            button.userInteractionEnabled = NO;
             [self addSubview:button];
             [buttons addObject:button];
         }
@@ -72,10 +74,40 @@
     return self.colors[(int)arc4random_uniform(self.colors.count)];
 }
 
-- (GGGridShape *)randomShape {
+- (GGGridShape *)randomShapeWithLength:(NSUInteger)length {
     GGGridShape * shape = [GGGridShape shape];
     [shape addIndex:[self randomButton].index];
+    for (NSUInteger i = 0; i < length - 1; i++) {
+        NSUInteger lastIndex = [shape.indices.lastObject integerValue];
+        [shape addIndex:[self randomIndexAdjacentToIndex:lastIndex]];
+    }
     return shape;
+}
+
+- (NSUInteger)randomIndexAdjacentToIndex:(NSUInteger)index {
+    NSMutableSet * adjacentIndices = [NSMutableSet set];
+    
+    //RIGHT
+    if ((NSInteger)index % BUTTONS_PER_ROW + 1 < BUTTONS_PER_ROW) {
+        [adjacentIndices addObject:@(index + 1)];
+    }
+    
+    //LEFT
+    if ((NSInteger)index % BUTTONS_PER_ROW - 1 >= 0) {
+        [adjacentIndices addObject:@(index - 1)];
+    }
+    
+    //UP
+    if ((NSInteger)index - BUTTONS_PER_ROW >= 0) {
+        [adjacentIndices addObject:@(index - BUTTONS_PER_ROW)];
+    }
+    
+    //DOWN
+    if ((NSInteger)index + BUTTONS_PER_ROW < BUTTONS_PER_ROW*BUTTONS_PER_COLUMN) {
+        [adjacentIndices addObject:@(index + BUTTONS_PER_ROW)];
+    }
+    
+    return [[adjacentIndices anyObject] integerValue];
 }
 
 - (GGButton *)randomButton {
@@ -85,7 +117,7 @@
 - (GGSequence *)randomSequenceWithLength:(NSUInteger)length {
     GGSequence * sequence = [GGSequence sequence];
     for (NSUInteger i = 0; i < length; i++) {
-        [sequence addShape:[self randomShape]];
+        [sequence addShape:[self randomShapeWithLength:(int)arc4random_uniform(5)]];
     }
     return sequence;
 }
@@ -104,10 +136,6 @@
     NSInteger row = point.y / (BUTTON_HEIGHT);
     NSUInteger index = row * BUTTONS_PER_ROW + column;
     return [self buttonAtIndex:index];
-}
-
-- (void)buttonPressed:(GGButton *)button {
-    [self.delegate didPressButton:button];
 }
 
 - (void)playSequence:(GGSequence *)sequence {
@@ -129,7 +157,7 @@
                                                           target:self
                                                         selector:@selector(playSequenceStep)
                                                         userInfo:nil
-                                                         repeats:YES];
+                                                         repeats:NO];
     }
     self.sequenceCompletion = completion;
 }
@@ -137,9 +165,14 @@
 - (void)playSequenceStep {
     GGGridShape * shape;
     if ((shape = self.playSequenceEnumerator.nextObject)) {
-        [self playShape:shape completion:nil interval:PLAY_SHAPE_INTERVAL];
+        [self playShape:shape completion:^{
+            self.playSequenceTimer = [NSTimer scheduledTimerWithTimeInterval:self.playSequenceTimer.timeInterval
+                                                                      target:self
+                                                                    selector:@selector(playSequenceStep)
+                                                                    userInfo:nil
+                                                                     repeats:NO];
+        } interval:PLAY_SHAPE_INTERVAL];
     } else {
-        [self.playSequenceTimer invalidate];
         self.isPlaying = NO;
         if(self.sequenceCompletion) self.sequenceCompletion();
     }
@@ -153,17 +186,55 @@
                                                            target:self
                                                          selector:@selector(playShapeStep)
                                                          userInfo:nil
-                                                          repeats:YES];
+                                                          repeats:NO];
+    self.shapeCompletion = completion;
 }
 
 - (void)playShapeStep {
     NSNumber * index;
     if ((index = self.playShapeEnumerator.nextObject)) {
-        [[self buttonAtIndex:index.intValue] lightUp];
+        NSLog(@"New Shape Step");
+        [[self buttonAtIndex:index.intValue] lightUpCompletion:^(BOOL finished) {
+            self.playShapeTimer = [NSTimer scheduledTimerWithTimeInterval:self.playShapeTimer.timeInterval
+                                                                   target:self
+                                                                 selector:@selector(playShapeStep)
+                                                                 userInfo:nil
+                                                                  repeats:NO];
+        }];
+
     } else {
-        [self.playShapeTimer invalidate];
         if (self.shapeCompletion) self.shapeCompletion();
     }
+}
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    UITouch * touch = [touches anyObject];
+    GGButton * selectedButton = [self buttonAtLocation:[touch locationInView:self]];
+    
+    self.currentShape = [GGGridShape shape];
+    [self.currentShape addIndex:selectedButton.index];
+    [selectedButton lightUp];
+    
+    self.lastSelectedButton = selectedButton;
+}
+
+- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
+    UITouch * touch = [touches anyObject];
+    GGButton * selectedButton = [self buttonAtLocation:[touch locationInView:self]];
+    if (![selectedButton isEqual:self.lastSelectedButton]) {
+        [self.currentShape addIndex:selectedButton.index];
+        self.lastSelectedButton = selectedButton;
+        [selectedButton lightUp];
+    }
+}
+
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
+    [self.delegate gridView:self didSelectShape:self.currentShape];
+    self.currentShape = nil;
+}
+
+- (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event {
+    [super touchesCancelled:touches withEvent:event];
 }
 
 @end
