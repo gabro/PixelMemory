@@ -17,11 +17,11 @@
     return self;
 }
 
-- (void)lightUp {
-    [self lightUpCompletion:nil];
+- (void)lightUpAndDown {
+    [self lightUpAndDownCompletion:nil];
 }
 
-- (void)lightUpCompletion:(void (^)(BOOL finished))completion {
+- (void)lightUpAndDownCompletion:(void (^)(BOOL finished))completion {
     void (^lightUpCompletion)(BOOL) = ^(BOOL finished) {
         [UIView animateWithDuration:BUTTON_LIGHT_DOWN_ANIMATION_DURATION
                               delay:BUTTON_LIGHT_UP_PERSISTANCE

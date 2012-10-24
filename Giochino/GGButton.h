@@ -14,7 +14,7 @@
 
 - (id)initWithFrame:(CGRect)frame index:(NSUInteger)index;
 
-- (void)lightUp;
-- (void)lightUpCompletion:(void(^)(BOOL finished))completion;
+- (void)lightUpAndDown;
+- (void)lightUpAndDownCompletion:(void(^)(BOOL finished))completion;
 
 @end

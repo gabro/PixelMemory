@@ -182,29 +182,25 @@
        completion:(void (^)())completion
          interval:(NSTimeInterval)interval {
     self.playShapeEnumerator = [shape.indices objectEnumerator];
-    self.playShapeTimer = [NSTimer scheduledTimerWithTimeInterval:interval
-                                                           target:self
-                                                         selector:@selector(playShapeStep)
-                                                         userInfo:nil
-                                                          repeats:NO];
+    [self playShapeStep];
     self.shapeCompletion = completion;
+    NSLog(@"Shape length %i", shape.length);
 }
 
 - (void)playShapeStep {
     NSNumber * index;
     if ((index = self.playShapeEnumerator.nextObject)) {
         NSLog(@"New Shape Step");
-        [[self buttonAtIndex:index.intValue] lightUpCompletion:^(BOOL finished) {
-            self.playShapeTimer = [NSTimer scheduledTimerWithTimeInterval:self.playShapeTimer.timeInterval
-                                                                   target:self
-                                                                 selector:@selector(playShapeStep)
-                                                                 userInfo:nil
-                                                                  repeats:NO];
-        }];
+        [[self buttonAtIndex:index.intValue] lightUpAndDownCompletion:nil];
 
+        [self performSelector:@selector(playShapeStep) withObject:nil afterDelay:0.20];
     } else {
-        if (self.shapeCompletion) self.shapeCompletion();
+        [self performSelector:@selector(completeShape) withObject:nil afterDelay:0.5];
     }
+}
+
+- (void)completeShape {
+    if (self.shapeCompletion) self.shapeCompletion();
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
@@ -213,7 +209,7 @@
     
     self.currentShape = [GGGridShape shape];
     [self.currentShape addIndex:selectedButton.index];
-    [selectedButton lightUp];
+    [selectedButton lightUpAndDown];
     
     self.lastSelectedButton = selectedButton;
 }
@@ -224,7 +220,7 @@
     if (![selectedButton isEqual:self.lastSelectedButton]) {
         [self.currentShape addIndex:selectedButton.index];
         self.lastSelectedButton = selectedButton;
-        [selectedButton lightUp];
+        [selectedButton lightUpAndDown];
     }
 }
 
