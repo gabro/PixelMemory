@@ -22,7 +22,6 @@
 @property (nonatomic, strong) NSEnumerator * playSequenceEnumerator;
 @property (nonatomic, strong) NSTimer * playShapeTimer;
 @property (nonatomic, strong) NSEnumerator * playShapeEnumerator;
-@property (nonatomic, assign) BOOL isPlaying;
 @property (nonatomic, copy) void (^sequenceCompletion)();
 @property (nonatomic, copy) void (^shapeCompletion)();
 @property (nonatomic, strong) GGGridShape * currentShape;
@@ -154,32 +153,20 @@
 - (void)playSequence:(GGSequence *)sequence
           completion:(void (^)())completion
             interval:(NSTimeInterval)interval {
-    if (!self.isPlaying) {
-        self.isPlaying = YES;
-        self.playSequenceEnumerator = [sequence.shapes objectEnumerator];
-        self.playSequenceTimer = [NSTimer scheduledTimerWithTimeInterval:interval
-                                                          target:self
-                                                        selector:@selector(playSequenceStep)
-                                                        userInfo:nil
-                                                         repeats:NO];
-    }
+    self.playSequenceEnumerator = [sequence.shapes objectEnumerator];
+    [self playSequenceStep:self.playSequenceEnumerator.nextObject];
     self.sequenceCompletion = completion;
 }
 
-- (void)playSequenceStep {
-    GGGridShape * shape;
-    if ((shape = self.playSequenceEnumerator.nextObject)) {
-        [self playShape:shape completion:^{
-            self.playSequenceTimer = [NSTimer scheduledTimerWithTimeInterval:self.playSequenceTimer.timeInterval
-                                                                      target:self
-                                                                    selector:@selector(playSequenceStep)
-                                                                    userInfo:nil
-                                                                     repeats:NO];
-        } interval:PLAY_SHAPE_INTERVAL];
-    } else {
-        self.isPlaying = NO;
-        if(self.sequenceCompletion) self.sequenceCompletion();
-    }
+- (void)playSequenceStep:(GGGridShape *)shape {
+    [self playShape:shape completion:^{
+        GGGridShape * newShape;
+        if ((newShape = self.playSequenceEnumerator.nextObject)) {
+            [self performSelector:@selector(playSequenceStep:) withObject:newShape afterDelay:PLAY_INTERVAL];
+        } else {
+            if (self.sequenceCompletion) self.sequenceCompletion();
+        }
+    } interval:PLAY_SHAPE_INTERVAL];
 }
 
 - (void)playShape:(GGGridShape *)shape
@@ -188,24 +175,22 @@
     self.playShapeEnumerator = [shape.indices objectEnumerator];
     [self playShapeStep];
     self.shapeCompletion = completion;
-    NSLog(@"Shape length %i", shape.length);
 }
 
 - (void)playShapeStep {
     NSNumber * index;
     if ((index = self.playShapeEnumerator.nextObject)) {
-        NSLog(@"New Shape Step");
         [[self buttonAtIndex:index.intValue] lightUpAndDownCompletion:nil];
 
         [self performSelector:@selector(playShapeStep) withObject:nil afterDelay:0.20]; // TODO
     } else {
-        [self performSelector:@selector(completeShape) withObject:nil afterDelay:0.5]; // TODO
+        if (self.shapeCompletion) self.shapeCompletion();
     }
 }
-
-- (void)completeShape {
-    if (self.shapeCompletion) self.shapeCompletion();
-}
+//
+//- (void)completeShape {
+//    if (self.shapeCompletion) self.shapeCompletion();
+//}
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     UITouch * touch = [touches anyObject];

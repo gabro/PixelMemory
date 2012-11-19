@@ -11,6 +11,8 @@
 
 @interface GGGameViewController : UIViewController <GGGridViewDelegate>
 
+@property (weak, nonatomic) IBOutlet UIProgressView * progressBar;
+
 - (void)startNewGame;
 
 @end
