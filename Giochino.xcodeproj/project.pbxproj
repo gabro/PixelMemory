@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6A397F801659D7E90020C803 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6A397F821659D7E90020C803 /* Localizable.strings */; };
 		6A59E4921634CBDE00CC9ED8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A59E4911634CBDE00CC9ED8 /* UIKit.framework */; };
 		6A59E4941634CBDE00CC9ED8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A59E4931634CBDE00CC9ED8 /* Foundation.framework */; };
 		6A59E4961634CBDE00CC9ED8 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A59E4951634CBDE00CC9ED8 /* CoreGraphics.framework */; };
@@ -45,6 +46,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6A397F811659D7E90020C803 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		6A59E48D1634CBDE00CC9ED8 /* Giochino.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Giochino.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6A59E4911634CBDE00CC9ED8 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		6A59E4931634CBDE00CC9ED8 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -220,6 +222,7 @@
 			children = (
 				6A59E5021635E8C600CC9ED8 /* NEUROPOL.ttf */,
 				6A59E4C31634FCD400CC9ED8 /* Images */,
+				6A397F821659D7E90020C803 /* Localizable.strings */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -317,6 +320,7 @@
 				6A59E4FA1635D81900CC9ED8 /* button_try_again@2x.png in Resources */,
 				6A59E4FB1635D81900CC9ED8 /* game_over_bg.png in Resources */,
 				6A59E4FC1635D81900CC9ED8 /* game_over_bg@2x.png in Resources */,
+				6A397F801659D7E90020C803 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -342,6 +346,14 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		6A397F821659D7E90020C803 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6A397F811659D7E90020C803 /* en */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		6A59E49A1634CBDE00CC9ED8 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (

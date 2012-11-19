@@ -66,7 +66,7 @@
 #pragma mark - Game business logic
 - (void)startNewGame {
     self.computerSequence = [GGSequence sequence];
-    [self showMessage:@"GO!" inView:self.view completion:^{
+    [self showMessage:NSLocalizedString(@"Start game message", "") inView:self.view completion:^{
         [self nextLevel];
     }];
     self.progressTimer = [NSTimer scheduledTimerWithTimeInterval:TIMER_FRAME_RATE
@@ -145,7 +145,7 @@
 - (void)gameOver {
     GGGameOverViewController * gameOverVC = [self.storyboard instantiateViewControllerWithIdentifier:@"GameOverVC"];
     gameOverVC.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
-    [self showMessage:@"Game Over" inView:self.view.window completion:nil];
+    [self showMessage:NSLocalizedString(@"Game over message", @"") inView:self.view.window completion:nil];
     [self presentViewController:gameOverVC animated:YES completion:nil];
     
     [self.progressTimer invalidate];
