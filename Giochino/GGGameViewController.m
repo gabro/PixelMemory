@@ -15,9 +15,6 @@
 
 #import "GGGameOverViewController.h"
 
-#define TIMER_FRAME_RATE 0.05
-#define TIMER_BONUS 1
-
 @interface GGGameViewController ()
 @property (nonatomic, strong) GGGridView * gridView;
 @property (nonatomic, strong) GGSequence * computerSequence;

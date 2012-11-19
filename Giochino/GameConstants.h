@@ -11,6 +11,8 @@
 
 // Game constanst
 #define TURNS_INTERVAL 0.6f
+#define TIMER_FRAME_RATE 0.05
+#define TIMER_BONUS 1
 
 // Grid constants
 #define BUTTONS_PER_ROW 4
@@ -24,7 +26,6 @@
 #define BUTTON_LIGHT_DOWN_ANIMATION_DURATION 0.25f
 #define BUTTON_LIGHT_UP_PERSISTANCE 0.1f
 #define BASE_ALPHA 0.1f
-
 
 // Sequence constants
 #define MAX_SEQUENCE_LENGTH 1
