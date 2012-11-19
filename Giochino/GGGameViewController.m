@@ -32,17 +32,13 @@
     [super viewDidLoad];
 
     [self initGrid];
+    [self initProgressBar];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    self.progressBar.progress = 1.0f;
     self.maxTime = 10.0f;
     self.currentTimeLeft = self.maxTime;
-    self.progressBar.alpha = 0.8;
-    self.progressBar.transform = CGAffineTransformMakeScale(1.0f, 2.0f);;
-    self.progressBar.trackTintColor = [UIColor clearColor];
-    self.progressBar.userInteractionEnabled = NO;
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -55,6 +51,14 @@
     self.gridView = [[GGGridView alloc] initWithFrame:self.view.frame];
     self.gridView.delegate = self;
     [self.view insertSubview:self.gridView belowSubview:self.progressBar];
+}
+
+- (void)initProgressBar {
+    self.progressBar.progress = 1.0f;
+    self.progressBar.alpha = 0.5;
+    self.progressBar.transform = CGAffineTransformMakeScale(1.0f, 2.0f);;
+    self.progressBar.trackTintColor = [UIColor clearColor];
+    self.progressBar.userInteractionEnabled = NO;
 }
 
 #pragma mark - GGGridDelegate
