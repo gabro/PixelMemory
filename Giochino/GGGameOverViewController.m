@@ -19,7 +19,7 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"game_over_bg"]];
     self.resultLabel.font = NEUROPOL_FONT(20.0f);
-    self.resultLabel.text = @"Ciao mamma";
+    self.resultLabel.text = [NSString stringWithFormat:NSLocalizedString(@"GAME_OVER_SCORE_MESSAGE", nil), self.score];
 }
 
 - (IBAction)back {

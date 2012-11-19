@@ -20,9 +20,11 @@
 @property (nonatomic, strong) GGSequence * computerSequence;
 @property (nonatomic, strong) GGSequence * userSequence;
 @property (nonatomic, strong) NSTimer * progressTimer;
+@property (nonatomic, strong) NSDate * turnStartTime;
 @property (nonatomic, assign) NSTimeInterval maxTime;
 @property (nonatomic, assign) NSTimeInterval currentTimeLeft;
 @property (nonatomic, assign) BOOL shouldUpdateProgress;
+@property (nonatomic, assign) NSInteger score;
 @end
 
 @implementation GGGameViewController
@@ -32,12 +34,15 @@
     [super viewDidLoad];
 
     [self initGrid];
-    [self initProgressBar];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    self.maxTime = 10.0f;
+    
+    [self initProgressBar];
+    [self resetScore];
+    
+    self.maxTime = GAME_TIME;
     self.currentTimeLeft = self.maxTime;
     
     // TODO this is really weak. Fix it soon
@@ -78,15 +83,14 @@
 #pragma mark - Game business logic
 - (void)startNewGame {
     self.computerSequence = [GGSequence sequence];
-    [self showMessage:NSLocalizedString(@"Start game message", "") inView:self.view completion:^{
+    [self showMessage:NSLocalizedString(@"START_GAME_MESSAGE", @"") inView:self.view completion:^{
         [self nextLevel];
+        self.progressTimer = [NSTimer scheduledTimerWithTimeInterval:TIMER_FRAME_RATE
+                                                              target:self
+                                                            selector:@selector(handleProgressTimer)
+                                                            userInfo:nil
+                                                             repeats:YES];
     }];
-    self.progressTimer = [NSTimer scheduledTimerWithTimeInterval:TIMER_FRAME_RATE
-                                                          target:self
-                                                        selector:@selector(handleProgressTimer)
-                                                        userInfo:nil
-                                                         repeats:YES];
-//    [self.progressBar setProgress:1.0f animated:YES];
 }
 
 - (void)nextLevel {
@@ -96,6 +100,7 @@
         self.userSequence = [GGSequence sequence];
         [self userInteractionEnabled:YES];
         self.shouldUpdateProgress = YES;
+        self.turnStartTime = [NSDate date];
     }];
 }
 
@@ -147,17 +152,39 @@
     }
     if (self.userSequence.length == self.computerSequence.length) {
         [self updateProgress:TIMER_BONUS * self.computerSequence.length];
+        [self updateScore];
         [self userInteractionEnabled:NO];
         self.shouldUpdateProgress = NO;
         [self performSelector:@selector(nextLevel) withObject:nil afterDelay:TURNS_INTERVAL];
     }
 }
 
+- (void)resetScore {
+    self.score = 0;
+    self.scoreLabel.text = @"0";
+}
+
+- (void)updateScore {
+    NSTimeInterval elapsedTime = [[NSDate date] timeIntervalSinceDate:self.turnStartTime];
+    NSInteger maxScore = SCORE_MULTIPLIER*self.computerSequence.length;
+    NSInteger minScore = SCORE_MULTIPLIER*self.computerSequence.length/3;
+    NSInteger timePenality = elapsedTime*self.computerSequence.length;
+    NSInteger scoreDelta = MAX(maxScore - timePenality, minScore);
+    self.score += scoreDelta;
+    
+    [UIView animateWithDuration:1.0f animations:^{
+        self.scoreLabel.alpha = 0.4f;
+        self.scoreLabel.text = [NSString stringWithFormat:@"%i", self.score];
+        self.scoreLabel.alpha = 1.0f;
+    }];
+}
+
 
 - (void)gameOver {
     GGGameOverViewController * gameOverVC = [self.storyboard instantiateViewControllerWithIdentifier:@"GameOverVC"];
     gameOverVC.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
-    [self showMessage:NSLocalizedString(@"Game over message", @"") inView:self.view.window completion:nil];
+    gameOverVC.score = self.score;
+    [self showMessage:NSLocalizedString(@"GAME_OVER_MESSAGE", @"") inView:self.view.window completion:nil];
     [self presentViewController:gameOverVC animated:YES completion:nil];
     
     [self.progressTimer invalidate];

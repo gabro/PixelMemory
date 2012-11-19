@@ -14,6 +14,7 @@
 
 @property (weak, nonatomic) IBOutlet UIProgressView * progressBar;
 @property (weak, nonatomic) IBOutlet ADBannerView *bannerView;
+@property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
 
 - (void)startNewGame;
 

@@ -12,7 +12,9 @@
 // Game constanst
 #define TURNS_INTERVAL 0.6f
 #define TIMER_FRAME_RATE 0.05
-#define TIMER_BONUS 0.4
+#define TIMER_BONUS 0.6
+#define SCORE_MULTIPLIER 10
+#define GAME_TIME 10.0f
 
 // Grid constants
 #define BUTTONS_PER_ROW 4

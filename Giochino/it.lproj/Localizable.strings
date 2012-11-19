@@ -6,6 +6,6 @@
   Copyright (c) 2012 GG. All rights reserved.
 */
 
-"START_GAME_MESSAGE" = "Go!";
+"START_GAME_MESSAGE" = "Vai!";
 "GAME_OVER_MESSAGE" = "Game Over";
-"GAME_OVER_SCORE_MESSAGE" = "You scored %i points";
+"GAME_OVER_SCORE_MESSAGE" = "Hai fatto %i punti";

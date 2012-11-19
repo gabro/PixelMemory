@@ -44,5 +44,7 @@
 	<array>
 		<string>NEUROPOL.ttf</string>
 	</array>
+	<key>CFBundleAllowMixedLocalizations</key>
+	<true/>
 </dict>
 </plist>

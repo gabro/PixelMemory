@@ -10,6 +10,7 @@
 
 @interface GGGameOverViewController : UIViewController
 
+@property (nonatomic, assign) NSInteger score;
 @property (weak, nonatomic) IBOutlet UILabel *resultLabel;
 
 @end
