@@ -7,11 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <iAd/iAd.h>
 #import "GGGridView.h"
 
 @interface GGGameViewController : UIViewController <GGGridViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UIProgressView * progressBar;
+@property (weak, nonatomic) IBOutlet ADBannerView *bannerView;
 
 - (void)startNewGame;
 
