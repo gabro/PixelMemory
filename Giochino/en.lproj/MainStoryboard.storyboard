@@ -9,7 +9,7 @@
             <objects>
                 <viewController id="P8Q-nu-Yja" customClass="GGMenuViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="cxd-ad-tbQ">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xaw-Rj-jhh">
@@ -59,11 +59,14 @@
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="h7p-WS-uXe" firstAttribute="leading" secondItem="cxd-ad-tbQ" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="8i8-Ee-4lN"/>
-                            <constraint firstItem="ZtZ-cP-JqU" firstAttribute="top" secondItem="h7p-WS-uXe" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="9Ar-di-mm5"/>
-                            <constraint firstItem="h7p-WS-uXe" firstAttribute="top" secondItem="xaw-Rj-jhh" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="Fu1-hz-Jq7"/>
+                            <constraint firstItem="ZtZ-cP-JqU" firstAttribute="top" secondItem="h7p-WS-uXe" secondAttribute="bottom" constant="8" symbolic="YES" type="user" id="9Ar-di-mm5"/>
+                            <constraint firstAttribute="bottom" secondItem="PWG-ml-LAv" secondAttribute="bottom" constant="226" type="user" id="Ao6-mh-eVS"/>
+                            <constraint firstAttribute="bottom" secondItem="h7p-WS-uXe" secondAttribute="bottom" constant="84" type="user" id="Axc-uv-xIc"/>
+                            <constraint firstItem="h7p-WS-uXe" firstAttribute="top" secondItem="xaw-Rj-jhh" secondAttribute="bottom" constant="8" symbolic="YES" type="user" id="Fu1-hz-Jq7"/>
+                            <constraint firstAttribute="bottom" secondItem="ZtZ-cP-JqU" secondAttribute="bottom" constant="13" type="user" id="Shx-wW-mFo"/>
+                            <constraint firstAttribute="bottom" secondItem="xaw-Rj-jhh" secondAttribute="bottom" constant="155" type="user" id="XCH-GP-MWg"/>
                             <constraint firstItem="xaw-Rj-jhh" firstAttribute="leading" secondItem="cxd-ad-tbQ" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="esL-rK-Ggj"/>
-                            <constraint firstItem="PWG-ml-LAv" firstAttribute="top" secondItem="cxd-ad-tbQ" secondAttribute="top" constant="191" id="gzR-oQ-bHO"/>
-                            <constraint firstItem="xaw-Rj-jhh" firstAttribute="top" secondItem="PWG-ml-LAv" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="j7D-ai-laE"/>
+                            <constraint firstItem="xaw-Rj-jhh" firstAttribute="top" secondItem="PWG-ml-LAv" secondAttribute="bottom" constant="8" symbolic="YES" type="user" id="j7D-ai-laE"/>
                             <constraint firstItem="ZtZ-cP-JqU" firstAttribute="leading" secondItem="cxd-ad-tbQ" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="pAg-0e-dLN"/>
                             <constraint firstItem="PWG-ml-LAv" firstAttribute="leading" secondItem="cxd-ad-tbQ" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="u2l-jp-C4w"/>
                         </constraints>
@@ -79,14 +82,18 @@
             <objects>
                 <viewController id="2" customClass="GGGameViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="3">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <progressView opaque="NO" alpha="0.50000000000000011" contentMode="scaleToFill" progressViewStyle="bar" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="oX9-jv-csc"/>
+                            <progressView opaque="NO" alpha="0.50000000000000011" contentMode="scaleToFill" progressViewStyle="bar" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="oX9-jv-csc">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="10" type="user" id="H3S-gY-RWn"/>
+                                </constraints>
+                            </progressView>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="oX9-jv-csc" secondAttribute="bottom" constant="12" id="bsH-cW-JIm"/>
+                            <constraint firstItem="oX9-jv-csc" firstAttribute="top" secondItem="3" secondAttribute="top" constant="458" type="user" id="JDB-Kc-VxN"/>
                             <constraint firstAttribute="trailing" secondItem="oX9-jv-csc" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="vvH-ca-0eE"/>
                             <constraint firstItem="oX9-jv-csc" firstAttribute="leading" secondItem="3" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="zx9-AV-5hr"/>
                         </constraints>
@@ -104,7 +111,7 @@
             <objects>
                 <viewController storyboardIdentifier="GameOverVC" id="UQY-3L-ZBE" customClass="GGGameOverViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="fGS-FL-5X1">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="klx-zU-3qc">
@@ -190,6 +197,6 @@
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
-        <simulatedScreenMetrics key="destination"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
 </document>
