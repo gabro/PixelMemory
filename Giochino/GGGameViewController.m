@@ -138,7 +138,7 @@
         }
     }
     if (self.userSequence.length == self.computerSequence.length) {
-        [self updateProgress:TIMER_BONUS];
+        [self updateProgress:TIMER_BONUS * self.computerSequence.length];
         [self userInteractionEnabled:NO];
         self.shouldUpdateProgress = NO;
         [self performSelector:@selector(nextLevel) withObject:nil afterDelay:TURNS_INTERVAL];
