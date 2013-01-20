@@ -126,7 +126,7 @@
     label.textColor = [UIColor whiteColor];
     label.textAlignment = NSTextAlignmentCenter;
     label.text = message;
-    label.font = NEUROPOL_FONT(30.0f);
+    label.font = GAME_FONT(30.0f);
     label.center = self.view.center;
     [view addSubview:label];
     [self userInteractionEnabled:NO];

@@ -35,6 +35,6 @@
 #define PLAY_SHAPE_INTERVAL 0.1f
 
 // Misc
-#define NEUROPOL_FONT(s) [UIFont fontWithName:@"NEUROPOL" size:s]
+#define GAME_FONT(s) [UIFont fontWithName:@"NEUROPOL" size:s]
 
 #endif
