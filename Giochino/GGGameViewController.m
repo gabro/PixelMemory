@@ -9,7 +9,7 @@
 #import <QuartzCore/QuartzCore.h>
 
 #import "GGGameViewController.h"
-#import "GGButton.h"
+#import "GGTile.h"
 #import "GGSequence.h"
 #import "GGGridShape.h"
 

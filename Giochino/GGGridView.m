@@ -9,7 +9,7 @@
 #import <QuartzCore/QuartzCore.h>
 
 #import "GGGridView.h"
-#import "GGButton.h"
+#import "GGTile.h"
 #import "GGSequence.h"
 #import "GGGridShape.h"
 
@@ -57,7 +57,7 @@
             CGFloat xOrigin = BUTTON_WIDTH * j + BUTTON_PADDING;
             CGFloat yOrigin = BUTTON_HEIGHT * i + BUTTON_PADDING;
             CGRect buttonFrame = CGRectMake(xOrigin, yOrigin, BUTTON_WIDTH - BUTTON_PADDING * 2, BUTTON_HEIGHT - BUTTON_PADDING * 2);
-            GGButton * button = [[GGButton alloc] initWithFrame:buttonFrame index:(i * BUTTONS_PER_ROW + j)];
+            GGTile * button = [[GGTile alloc] initWithFrame:buttonFrame index:(i * BUTTONS_PER_ROW + j)];
             button.backgroundColor = [self randomColor];
             button.alpha = BASE_ALPHA;
             button.userInteractionEnabled = NO;
@@ -113,7 +113,7 @@
     return [adjacentIndices anyObject];
 }
 
-- (GGButton *)randomButton {
+- (GGTile *)randomButton {
     return self.buttons[(int)arc4random_uniform(self.buttons.count)];
 }
 
@@ -125,8 +125,8 @@
     return sequence;
 }
 
-- (GGButton *)buttonAtIndex:(NSUInteger)index {
-    for (GGButton * button in self.buttons) {
+- (GGTile *)buttonAtIndex:(NSUInteger)index {
+    for (GGTile * button in self.buttons) {
         if (button.index == index) {
             return button;
         }
@@ -134,7 +134,7 @@
     return nil;
 }
 
-- (GGButton *)buttonAtLocation:(CGPoint)point {
+- (GGTile *)buttonAtLocation:(CGPoint)point {
     NSInteger column = point.x / (BUTTON_WIDTH);
     NSInteger row = point.y / (BUTTON_HEIGHT);
     NSUInteger index = row * BUTTONS_PER_ROW + column;
@@ -194,7 +194,7 @@
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     UITouch * touch = [touches anyObject];
-    GGButton * selectedButton = [self buttonAtLocation:[touch locationInView:self]];
+    GGTile * selectedButton = [self buttonAtLocation:[touch locationInView:self]];
     
     self.currentShape = [GGGridShape shape];
     [self.currentShape addIndex:selectedButton.index];
@@ -203,7 +203,7 @@
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
     UITouch * touch = [touches anyObject];
-    GGButton * selectedButton = [self buttonAtLocation:[touch locationInView:self]];
+    GGTile * selectedButton = [self buttonAtLocation:[touch locationInView:self]];
     if (![self.currentShape.indices containsObject:@(selectedButton.index)]) {
         [self.currentShape addIndex:selectedButton.index];
         [selectedButton lightUpAndDown];

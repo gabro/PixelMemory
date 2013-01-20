@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface GGButton : UIButton
+@interface GGTile : UIView
 
 @property (nonatomic, readonly) NSUInteger index;
 

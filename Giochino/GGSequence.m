@@ -7,7 +7,7 @@
 //
 
 #import "GGSequence.h"
-#import "GGButton.h"
+#import "GGTile.h"
 
 @interface GGSequence ()
 @end
@@ -35,7 +35,7 @@
     return self.shapes.count;
 }
 
-- (GGButton *)elementAtIndex:(NSUInteger)index {
+- (GGTile *)elementAtIndex:(NSUInteger)index {
     return [self.shapes objectAtIndex:index];
 }
 

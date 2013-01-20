@@ -6,9 +6,9 @@
 //  Copyright (c) 2012 GG. All rights reserved.
 //
 
-#import "GGButton.h"
+#import "GGTile.h"
 
-@implementation GGButton
+@implementation GGTile
 
 - (id)initWithFrame:(CGRect)frame index:(NSUInteger)index {
     if (self = [super initWithFrame:frame]) {

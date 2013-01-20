@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@class GGButton;
+@class GGTile;
 @class GGSequence;
 @class GGGridShape;
 @class GGGridView;
