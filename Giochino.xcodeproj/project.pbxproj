@@ -43,6 +43,7 @@
 		6A59E5011635D87E00CC9ED8 /* GGGameOverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A59E5001635D87E00CC9ED8 /* GGGameOverViewController.m */; };
 		6A59E5031635E8D800CC9ED8 /* NEUROPOL.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6A59E5021635E8C600CC9ED8 /* NEUROPOL.ttf */; };
 		6A8ACA5616371ADC000F422F /* GGGridShape.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A8ACA5516371ADC000F422F /* GGGridShape.m */; };
+		6AA0D2BD16ACAF5A008C622E /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6AA0D2BB16ACAF5A008C622E /* MainStoryboard.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -94,6 +95,7 @@
 		6A59E5021635E8C600CC9ED8 /* NEUROPOL.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = NEUROPOL.ttf; sourceTree = "<group>"; };
 		6A8ACA5416371ADC000F422F /* GGGridShape.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGGridShape.h; sourceTree = "<group>"; };
 		6A8ACA5516371ADC000F422F /* GGGridShape.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGGridShape.m; sourceTree = "<group>"; };
+		6AA0D2BC16ACAF5A008C622E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = MainStoryboard.storyboard; sourceTree = "<group>"; };
 		6AB827A7165AD465006B7F6C /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Localizable.strings; sourceTree = "<group>"; };
 		6AB827A8165AD465006B7F6C /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -223,6 +225,7 @@
 		6A59E4EF16352D0600CC9ED8 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				6AA0D2BA16ACAF5A008C622E /* Base.lproj */,
 				6A59E5021635E8C600CC9ED8 /* NEUROPOL.ttf */,
 				6A59E4C31634FCD400CC9ED8 /* Images */,
 				6A397F821659D7E90020C803 /* Localizable.strings */,
@@ -247,6 +250,14 @@
 				6A59E4E1163522FE00CC9ED8 /* GGGridView.m */,
 			);
 			name = Views;
+			sourceTree = "<group>";
+		};
+		6AA0D2BA16ACAF5A008C622E /* Base.lproj */ = {
+			isa = PBXGroup;
+			children = (
+				6AA0D2BB16ACAF5A008C622E /* MainStoryboard.storyboard */,
+			);
+			path = Base.lproj;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -325,6 +336,7 @@
 				6A59E4FB1635D81900CC9ED8 /* game_over_bg.png in Resources */,
 				6A59E4FC1635D81900CC9ED8 /* game_over_bg@2x.png in Resources */,
 				6A397F801659D7E90020C803 /* Localizable.strings in Resources */,
+				6AA0D2BD16ACAF5A008C622E /* MainStoryboard.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -366,6 +378,14 @@
 				6AB827A8165AD465006B7F6C /* it */,
 			);
 			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		6AA0D2BB16ACAF5A008C622E /* MainStoryboard.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6AA0D2BC16ACAF5A008C622E /* Base */,
+			);
+			name = MainStoryboard.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
