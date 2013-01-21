@@ -102,7 +102,7 @@
 
 
 #pragma mark - Where magic happens (TM)
-// The GameBoard serves a proxy between the GameContoller and the gridView 
+// The GameBoard serves a proxy between the GameContoller and the gridView
 - (void)forwardInvocation:(NSInvocation *)anInvocation {
     if ([self.gridView respondsToSelector:anInvocation.selector]) {
         [anInvocation invokeWithTarget:self.gridView];
@@ -111,6 +111,7 @@
     }
 }
 
+// This method is necessary for the above forwardInvocation to work
 - (NSMethodSignature *)methodSignatureForSelector:(SEL)aSelector {
     NSMethodSignature * signature = [super methodSignatureForSelector:aSelector];
     if (!signature) {
