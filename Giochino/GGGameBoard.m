@@ -8,6 +8,8 @@
 
 #import "GGGameBoard.h"
 
+#import <QuartzCore/QuartzCore.h>
+
 @interface GGGameBoard ()
 @property (nonatomic, strong) GGGridView * gridView;
 @property (nonatomic, strong) UILabel * scoreLabel;
@@ -98,6 +100,36 @@
     CGRect barFrame = self.progressBar.frame;
     barFrame.origin.x = CGRectGetMaxX(self.gridView.frame);
     self.progressBar.frame = barFrame;
+}
+
+- (void)showMessage:(NSString *)message
+         completion:(void (^)())completion {
+    [self showMessage:message inView:self completion:completion];
+}
+
+- (void)showMessage:(NSString *)message
+             inView:(UIView *)view
+         completion:(void(^)())completion {
+    UILabel * label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 200, 50)];
+    label.backgroundColor = [UIColor clearColor];
+    label.textColor = [UIColor whiteColor];
+    label.textAlignment = NSTextAlignmentCenter;
+    label.text = message;
+    label.font = GAME_FONT(30.0f);
+    label.center = view.center;
+    [view addSubview:label];
+    view.userInteractionEnabled = NO;
+    [UIView animateWithDuration:1.5f
+                          delay:0.0f
+                        options:!UIViewAnimationOptionAllowUserInteraction
+                     animations:^{
+                         label.layer.affineTransform = CGAffineTransformMakeScale(10.0f, 10.0f);
+                         label.alpha = 0.0f;
+                     } completion:^(BOOL finished) {
+                         [label removeFromSuperview];
+                         view.userInteractionEnabled = YES;
+                         if (completion) completion();
+                     }];
 }
 
 

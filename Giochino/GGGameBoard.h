@@ -19,4 +19,12 @@
 
 - (void)updateProgress:(NSTimeInterval)progress;
 
+
+- (void)showMessage:(NSString *)message
+         completion:(void(^)())completion;
+
+- (void)showMessage:(NSString *)message
+             inView:(UIView *)view
+         completion:(void(^)())completion;
+
 @end

@@ -6,8 +6,6 @@
 //  Copyright (c) 2012 GG. All rights reserved.
 //
 
-#import <QuartzCore/QuartzCore.h>
-
 #import "GGGameViewController.h"
 #import "GGTile.h"
 #import "GGGameBoard.h"
@@ -31,18 +29,24 @@
 @implementation GGGameViewController
 
 #pragma mark - Initializers
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    [self setupAd];
+}
+
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    
-    self.gameBoard = [[GGGameBoard alloc] initWithFrame:self.view.frame progressBar:YES];
-    self.gameBoard.delegate = self;
-    [self.view addSubview:self.gameBoard];
-    
-    [self resetScore];
-    
-    self.maxTime = GAME_TIME;
-    self.currentTimeLeft = self.maxTime;
-    
+    [self setupNewGame];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [self startNewGame];
+    //    [self.gridView playSequence:[self.gridView randomSequenceWithLength:10]];
+}
+
+- (void)setupAd {
+    // Remove Ad from iPhone < 5
     // TODO this is really weak. Fix it soon
     if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
         CGSize result = [[UIScreen mainScreen] bounds].size;
@@ -52,12 +56,21 @@
     }
 }
 
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-    [self startNewGame];
-//    [self.gridView playSequence:[self.gridView randomSequenceWithLength:10]];
+- (void)setupNewGame {
+    [self setupGameBoard];
+    [self resetScore];
+    [self setupTime];
 }
 
+- (void)setupTime {
+    self.maxTime = GAME_TIME;
+    self.currentTimeLeft = self.maxTime;
+}
+- (void)setupGameBoard {
+    self.gameBoard = [[GGGameBoard alloc] initWithFrame:self.view.frame progressBar:YES];
+    self.gameBoard.delegate = self;
+    [self.view addSubview:self.gameBoard];
+}
 
 #pragma mark - GGGridDelegate
 - (void)gridView:(GGGridView *)gridView didSelectShape:(GGGridShape *)shape {
@@ -67,24 +80,35 @@
 
 #pragma mark - Game business logic
 - (void)startNewGame {
+    // Initialize a new empty computer sequence
     self.computerSequence = [GGSequence sequence];
-    [self showMessage:NSLocalizedString(@"START_GAME_MESSAGE", @"") inView:self.view completion:^{
-        [self nextLevel];
+    // Show the starting message to the user
+    [self.gameBoard showMessage:NSLocalizedString(@"START_GAME_MESSAGE", @"") completion:^{
+        // Start the progress timer
         self.progressTimer = [NSTimer scheduledTimerWithTimeInterval:TIMER_FRAME_RATE
                                                               target:self
                                                             selector:@selector(handleProgressTimer)
                                                             userInfo:nil
                                                              repeats:YES];
+        // Advance to the next level
+        [self nextLevel];
     }];
 }
 
 - (void)nextLevel {
+    // Increase the computer sequence with a random shape
     [self.computerSequence addShape:[(id)self.gameBoard randomShapeWithLength:(int)arc4random_uniform(MAX_SEQUENCE_LENGTH)+1]];
+    // Prevent the user to interact while playing the sequence
     [self userInteractionEnabled:NO];
+    // Play the computer sequence
     [(id)self.gameBoard playSequence:self.computerSequence completion:^{
+        // Initialize a new user sequence
         self.userSequence = [GGSequence sequence];
+        // Re-enable the user to interact
         [self userInteractionEnabled:YES];
+        // Start decreasing time
         self.shouldUpdateProgress = YES;
+        // Keep track of the start time of the current turn
         self.turnStartTime = [NSDate date];
     }];
 }
@@ -101,31 +125,6 @@
 - (void)updateProgress:(NSTimeInterval)progress {
     self.currentTimeLeft += MIN(progress, self.maxTime - self.currentTimeLeft);
     [self.gameBoard updateProgress:(self.currentTimeLeft / self.maxTime)];
-}
-
-- (void)showMessage:(NSString *)message
-             inView:(UIView *)view
-         completion:(void(^)())completion {
-    UILabel * label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 200, 50)];
-    label.backgroundColor = [UIColor clearColor];
-    label.textColor = [UIColor whiteColor];
-    label.textAlignment = NSTextAlignmentCenter;
-    label.text = message;
-    label.font = GAME_FONT(30.0f);
-    label.center = self.view.center;
-    [view addSubview:label];
-    [self userInteractionEnabled:NO];
-    [UIView animateWithDuration:1.5f
-                          delay:0.0f
-                        options:!UIViewAnimationOptionAllowUserInteraction
-                     animations:^{
-                         label.layer.affineTransform = CGAffineTransformMakeScale(10.0f, 10.0f);
-                         label.alpha = 0.0f;
-                     } completion:^(BOOL finished) {
-                         [label removeFromSuperview];
-                         [self userInteractionEnabled:YES];
-                         if (completion) completion();
-                     }];
 }
 
 - (void)checkSequence {
@@ -164,7 +163,7 @@
     GGGameOverViewController * gameOverVC = [self.storyboard instantiateViewControllerWithIdentifier:@"GameOverVC"];
     gameOverVC.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
     gameOverVC.score = self.score;
-    [self showMessage:NSLocalizedString(@"GAME_OVER_MESSAGE", @"") inView:self.view.window completion:nil];
+    [self.gameBoard showMessage:NSLocalizedString(@"GAME_OVER_MESSAGE", @"") inView:self.view.window completion:nil];
     [self presentViewController:gameOverVC animated:YES completion:nil];
     
     [self.progressTimer invalidate];
