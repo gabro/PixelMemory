@@ -85,11 +85,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <progressView opaque="NO" alpha="0.50000000000000011" contentMode="scaleToFill" progressViewStyle="bar" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="oX9-jv-csc">
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="10" type="user" id="H3S-gY-RWn"/>
-                                </constraints>
-                            </progressView>
                             <adBannerView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="E4i-7l-vS6">
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="ARt-qb-6jv"/>
@@ -99,32 +94,16 @@
                                     <string>ADBannerContentSizePortrait</string>
                                 </requiredContentSizeIdentifiers>
                             </adBannerView>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="0" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dT9-um-YOd">
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="21" id="KeC-Gt-NFK"/>
-                                    <constraint firstAttribute="width" constant="289" id="UnY-Jw-P1i"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="27"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="E4i-7l-vS6" firstAttribute="bottom" secondItem="3" secondAttribute="bottom" type="default" id="4sX-v4-Ncg"/>
-                            <constraint firstItem="oX9-jv-csc" firstAttribute="top" secondItem="3" secondAttribute="top" constant="458" type="user" id="JDB-Kc-VxN"/>
                             <constraint firstItem="E4i-7l-vS6" firstAttribute="leading" secondItem="3" secondAttribute="leading" type="default" id="KdM-6S-f4I"/>
-                            <constraint firstItem="dT9-um-YOd" firstAttribute="top" secondItem="3" secondAttribute="top" constant="8" id="Mp6-aA-RL2"/>
                             <constraint firstItem="E4i-7l-vS6" firstAttribute="trailing" secondItem="3" secondAttribute="trailing" type="default" id="UeG-V2-xmE"/>
-                            <constraint firstAttribute="trailing" secondItem="oX9-jv-csc" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="vvH-ca-0eE"/>
-                            <constraint firstAttribute="trailing" secondItem="dT9-um-YOd" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="yCa-4B-SHY"/>
-                            <constraint firstItem="oX9-jv-csc" firstAttribute="leading" secondItem="3" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="zx9-AV-5hr"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="bannerView" destination="E4i-7l-vS6" id="nCH-t1-JcT"/>
-                        <outlet property="progressBar" destination="oX9-jv-csc" id="eXE-6q-62w"/>
-                        <outlet property="scoreLabel" destination="dT9-um-YOd" id="HaS-MN-xnq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4" sceneMemberID="firstResponder"/>
@@ -210,8 +189,6 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/GGGameViewController.h"/>
             <relationships>
                 <relationship kind="outlet" name="bannerView" candidateClass="ADBannerView"/>
-                <relationship kind="outlet" name="progressBar" candidateClass="UIProgressView"/>
-                <relationship kind="outlet" name="scoreLabel" candidateClass="UILabel"/>
             </relationships>
         </class>
         <class className="GGMenuViewController" superclassName="UIViewController">

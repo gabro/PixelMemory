@@ -16,7 +16,7 @@
 #define rgb(r,g,b) [UIColor colorWithRed:r/255.0f green:g/255.0f blue:b/255.0f alpha:1.0f]
 
 @interface GGGridView ()
-@property (nonatomic, copy) NSArray * buttons;
+@property (nonatomic, copy) NSArray * tiles;
 @property (nonatomic, copy) NSArray * colors;
 @property (nonatomic, strong) NSTimer * playSequenceTimer;
 @property (nonatomic, strong) NSEnumerator * playSequenceEnumerator;
@@ -32,10 +32,19 @@
 - (id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
+        _tilesBaseAlpha = BASE_ALPHA;
         [self initColors];
         [self initButtons];
     }
     return self;
+}
+
+- (void)setTilesBaseAlpha:(CGFloat)tilesBaseAlpha {
+    _tilesBaseAlpha = tilesBaseAlpha;
+    for (GGTile * tile in self.tiles) {
+        tile.alpha = _tilesBaseAlpha;
+        tile.baseAlpha = _tilesBaseAlpha;
+    }
 }
 
 
@@ -51,21 +60,21 @@
 }
 
 - (void)initButtons {
-    NSMutableArray * buttons = [NSMutableArray arrayWithCapacity:BUTTONS_PER_COLUMN*BUTTONS_PER_ROW];
+    NSMutableArray * tiles = [NSMutableArray arrayWithCapacity:BUTTONS_PER_COLUMN*BUTTONS_PER_ROW];
     for (NSUInteger i = 0 ; i < BUTTONS_PER_COLUMN; i++) {
         for (NSUInteger j = 0; j < BUTTONS_PER_ROW; j++) {
             CGFloat xOrigin = BUTTON_WIDTH * j + BUTTON_PADDING;
             CGFloat yOrigin = BUTTON_HEIGHT * i + BUTTON_PADDING;
-            CGRect buttonFrame = CGRectMake(xOrigin, yOrigin, BUTTON_WIDTH - BUTTON_PADDING * 2, BUTTON_HEIGHT - BUTTON_PADDING * 2);
-            GGTile * button = [[GGTile alloc] initWithFrame:buttonFrame index:(i * BUTTONS_PER_ROW + j)];
-            button.backgroundColor = [self randomColor];
-            button.alpha = BASE_ALPHA;
-            button.userInteractionEnabled = NO;
-            [self addSubview:button];
-            [buttons addObject:button];
+            CGRect tileFrame = CGRectMake(xOrigin, yOrigin, BUTTON_WIDTH - BUTTON_PADDING * 2, BUTTON_HEIGHT - BUTTON_PADDING * 2);
+            GGTile * tile = [[GGTile alloc] initWithFrame:tileFrame index:(i * BUTTONS_PER_ROW + j) baseAlpha:_tilesBaseAlpha];
+            tile.alpha = _tilesBaseAlpha;
+            tile.backgroundColor = [self randomColor];
+            tile.userInteractionEnabled = NO;
+            [self addSubview:tile];
+            [tiles addObject:tile];
         }
     }
-    self.buttons = buttons;
+    self.tiles = tiles;
 }
 
 - (UIColor *)randomColor {
@@ -114,7 +123,7 @@
 }
 
 - (GGTile *)randomButton {
-    return self.buttons[(int)arc4random_uniform(self.buttons.count)];
+    return self.tiles[(int)arc4random_uniform(self.tiles.count)];
 }
 
 - (GGSequence *)randomSequenceWithLength:(NSUInteger)length {
@@ -126,7 +135,7 @@
 }
 
 - (GGTile *)buttonAtIndex:(NSUInteger)index {
-    for (GGTile * button in self.buttons) {
+    for (GGTile * button in self.tiles) {
         if (button.index == index) {
             return button;
         }

@@ -22,6 +22,7 @@
 @interface GGGridView : UIView
 
 @property (nonatomic, weak) id<GGGridViewDelegate> delegate;
+@property (nonatomic, assign) CGFloat tilesBaseAlpha;
 
 - (GGSequence *)randomSequenceWithLength:(NSUInteger)length;
 - (GGGridShape *)randomShapeWithLength:(NSUInteger)length;

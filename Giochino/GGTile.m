@@ -10,9 +10,10 @@
 
 @implementation GGTile
 
-- (id)initWithFrame:(CGRect)frame index:(NSUInteger)index {
+- (id)initWithFrame:(CGRect)frame index:(NSUInteger)index baseAlpha:(CGFloat)baseAlpha {
     if (self = [super initWithFrame:frame]) {
         _index = index;
+        _baseAlpha = baseAlpha;
     }
     return self;
 }
@@ -27,7 +28,7 @@
                               delay:BUTTON_LIGHT_UP_PERSISTANCE
                             options:!UIViewAnimationOptionAllowUserInteraction
                          animations:^{
-                             self.alpha = BASE_ALPHA;
+                             self.alpha = self.baseAlpha;
                          } completion:completion];
     };
     

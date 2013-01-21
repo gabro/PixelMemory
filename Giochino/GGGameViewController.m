@@ -10,13 +10,14 @@
 
 #import "GGGameViewController.h"
 #import "GGTile.h"
+#import "GGGameBoard.h"
 #import "GGSequence.h"
 #import "GGGridShape.h"
 
 #import "GGGameOverViewController.h"
 
 @interface GGGameViewController ()
-@property (nonatomic, strong) GGGridView * gridView;
+@property (nonatomic, strong) GGGameBoard * gameBoard;
 @property (nonatomic, strong) GGSequence * computerSequence;
 @property (nonatomic, strong) GGSequence * userSequence;
 @property (nonatomic, strong) NSTimer * progressTimer;
@@ -30,16 +31,13 @@
 @implementation GGGameViewController
 
 #pragma mark - Initializers
-- (void)viewDidLoad {
-    [super viewDidLoad];
-
-    [self initGrid];
-}
-
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    [self initProgressBar];
+    self.gameBoard = [[GGGameBoard alloc] initWithFrame:self.view.frame progressBar:YES];
+    self.gameBoard.delegate = self;
+    [self.view addSubview:self.gameBoard];
+    
     [self resetScore];
     
     self.maxTime = GAME_TIME;
@@ -60,19 +58,6 @@
 //    [self.gridView playSequence:[self.gridView randomSequenceWithLength:10]];
 }
 
-- (void)initGrid {
-    self.gridView = [[GGGridView alloc] initWithFrame:self.view.frame];
-    self.gridView.delegate = self;
-    [self.view insertSubview:self.gridView belowSubview:self.progressBar];
-}
-
-- (void)initProgressBar {
-    self.progressBar.progress = 1.0f;
-    self.progressBar.alpha = 0.5;
-    self.progressBar.transform = CGAffineTransformMakeScale(1.0f, 2.0f);;
-    self.progressBar.trackTintColor = [UIColor clearColor];
-    self.progressBar.userInteractionEnabled = NO;
-}
 
 #pragma mark - GGGridDelegate
 - (void)gridView:(GGGridView *)gridView didSelectShape:(GGGridShape *)shape {
@@ -94,9 +79,9 @@
 }
 
 - (void)nextLevel {
-    [self.computerSequence addShape:[self.gridView randomShapeWithLength:(int)arc4random_uniform(MAX_SEQUENCE_LENGTH)+1]];
+    [self.computerSequence addShape:[(id)self.gameBoard randomShapeWithLength:(int)arc4random_uniform(MAX_SEQUENCE_LENGTH)+1]];
     [self userInteractionEnabled:NO];
-    [self.gridView playSequence:self.computerSequence completion:^{
+    [(id)self.gameBoard playSequence:self.computerSequence completion:^{
         self.userSequence = [GGSequence sequence];
         [self userInteractionEnabled:YES];
         self.shouldUpdateProgress = YES;
@@ -115,7 +100,7 @@
 
 - (void)updateProgress:(NSTimeInterval)progress {
     self.currentTimeLeft += MIN(progress, self.maxTime - self.currentTimeLeft);
-    [self.progressBar setProgress:(self.currentTimeLeft / self.maxTime) animated:YES];
+    [self.gameBoard updateProgress:(self.currentTimeLeft / self.maxTime)];
 }
 
 - (void)showMessage:(NSString *)message
@@ -161,7 +146,6 @@
 
 - (void)resetScore {
     self.score = 0;
-    self.scoreLabel.text = @"0";
 }
 
 - (void)updateScore {
@@ -172,11 +156,7 @@
     NSInteger scoreDelta = MAX(maxScore - timePenality, minScore);
     self.score += scoreDelta;
     
-    [UIView animateWithDuration:1.0f animations:^{
-        self.scoreLabel.alpha = 0.4f;
-        self.scoreLabel.text = [NSString stringWithFormat:@"%i", self.score];
-        self.scoreLabel.alpha = 1.0f;
-    }];
+    [self.gameBoard updateScore:self.score animated:YES];
 }
 
 
@@ -191,7 +171,7 @@
 }
 
 - (void)userInteractionEnabled:(BOOL)enabled {
-    self.gridView.userInteractionEnabled = enabled;
+    self.gameBoard.userInteractionEnabled = enabled;
 }
 
 - (NSUInteger)supportedInterfaceOrientations {

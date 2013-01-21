@@ -11,8 +11,9 @@
 @interface GGTile : UIView
 
 @property (nonatomic, readonly) NSUInteger index;
+@property (nonatomic, assign) CGFloat baseAlpha;
 
-- (id)initWithFrame:(CGRect)frame index:(NSUInteger)index;
+- (id)initWithFrame:(CGRect)frame index:(NSUInteger)index baseAlpha:(CGFloat)baseAlpha;
 
 - (void)lightUpAndDown;
 - (void)lightUpAndDownCompletion:(void(^)(BOOL finished))completion;

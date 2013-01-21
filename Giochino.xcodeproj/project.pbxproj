@@ -44,6 +44,7 @@
 		6A59E5031635E8D800CC9ED8 /* NEUROPOL.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6A59E5021635E8C600CC9ED8 /* NEUROPOL.ttf */; };
 		6A8ACA5616371ADC000F422F /* GGGridShape.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A8ACA5516371ADC000F422F /* GGGridShape.m */; };
 		6AA0D2BD16ACAF5A008C622E /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6AA0D2BB16ACAF5A008C622E /* MainStoryboard.storyboard */; };
+		6AA0D2C116ACBA5F008C622E /* GGGameBoard.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AA0D2C016ACBA5F008C622E /* GGGameBoard.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -96,6 +97,8 @@
 		6A8ACA5416371ADC000F422F /* GGGridShape.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGGridShape.h; sourceTree = "<group>"; };
 		6A8ACA5516371ADC000F422F /* GGGridShape.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGGridShape.m; sourceTree = "<group>"; };
 		6AA0D2BC16ACAF5A008C622E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = MainStoryboard.storyboard; sourceTree = "<group>"; };
+		6AA0D2BF16ACBA5F008C622E /* GGGameBoard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGGameBoard.h; sourceTree = "<group>"; };
+		6AA0D2C016ACBA5F008C622E /* GGGameBoard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGGameBoard.m; sourceTree = "<group>"; };
 		6AB827A7165AD465006B7F6C /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Localizable.strings; sourceTree = "<group>"; };
 		6AB827A8165AD465006B7F6C /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -248,6 +251,8 @@
 				6A59E4BD1634E86700CC9ED8 /* GGTile.m */,
 				6A59E4E0163522FE00CC9ED8 /* GGGridView.h */,
 				6A59E4E1163522FE00CC9ED8 /* GGGridView.m */,
+				6AA0D2BF16ACBA5F008C622E /* GGGameBoard.h */,
+				6AA0D2C016ACBA5F008C622E /* GGGameBoard.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -356,6 +361,7 @@
 				6A59E4E2163522FE00CC9ED8 /* GGGridView.m in Sources */,
 				6A59E5011635D87E00CC9ED8 /* GGGameOverViewController.m in Sources */,
 				6A8ACA5616371ADC000F422F /* GGGridShape.m in Sources */,
+				6AA0D2C116ACBA5F008C622E /* GGGameBoard.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

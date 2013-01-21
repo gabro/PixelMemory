@@ -22,6 +22,7 @@
 #define BUTTON_HEIGHT CGRectGetWidth([UIScreen mainScreen].applicationFrame)/BUTTONS_PER_ROW
 #define BUTTON_WIDTH BUTTON_HEIGHT
 #define BUTTON_PADDING 2.5f
+#define PROGRESS_BAR_HEIGHT 10.0f
 
 // Buttons constatns
 #define BUTTON_LIGHT_UP_ANIMATION_DURATION 0.1f
