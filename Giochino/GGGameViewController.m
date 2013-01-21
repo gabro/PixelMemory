@@ -97,11 +97,11 @@
 
 - (void)nextLevel {
     // Increase the computer sequence with a random shape
-    [self.computerSequence addShape:[(id)self.gameBoard randomShapeWithLength:(int)arc4random_uniform(MAX_SEQUENCE_LENGTH)+1]];
+    [self.computerSequence addShape:[self.gameBoard randomShapeWithLength:(int)arc4random_uniform(MAX_SEQUENCE_LENGTH)+1]];
     // Prevent the user to interact while playing the sequence
     [self userInteractionEnabled:NO];
     // Play the computer sequence
-    [(id)self.gameBoard playSequence:self.computerSequence completion:^{
+    [self.gameBoard playSequence:self.computerSequence completion:^{
         // Initialize a new user sequence
         self.userSequence = [GGSequence sequence];
         // Re-enable the user to interact

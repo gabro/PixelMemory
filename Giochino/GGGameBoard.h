@@ -28,3 +28,12 @@
          completion:(void(^)())completion;
 
 @end
+
+@interface GGGameBoard (ForwardedGridViewAPIs)
+- (GGSequence *)randomSequenceWithLength:(NSUInteger)length;
+- (GGGridShape *)randomShapeWithLength:(NSUInteger)length;
+
+- (void)playSequence:(GGSequence *)sequence;
+- (void)playSequence:(GGSequence *)sequence completion:(void(^)())completion;
+- (void)playSequence:(GGSequence *)sequence completion:(void(^)())completion interval:(NSTimeInterval)interval;
+@end
